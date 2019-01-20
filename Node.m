@@ -9,6 +9,7 @@ classdef Node < Element
         connectionNumber
         connectedNodes
         connectedLinks
+        length
 
     end
     
