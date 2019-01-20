@@ -225,7 +225,7 @@ classdef Network < handle & Fluids
         function calculateFlowRate(obj)
             % location of the surface whcih the flow rate should be
             % calculated through is the half distance of the network
-            surfaceLocation = obj.xDimension / 2;
+            surfaceLocation = obj.xDimension / 3;
             flowRate = 0;
             
             %search through all the links
@@ -248,9 +248,15 @@ classdef Network < handle & Fluids
                             0.5 *...
                             ((obj.Links{ii}.pore1Length / obj.Nodes{node1Index}.conductance) +...
                             (obj.Links{ii}.pore2Length / obj.Nodes{node2Index}.conductance)))^-1;
-                        
-                        % calculate the flow rate of the fluid
+                                                % calculate the flow rate of the fluid
                         flowRate = flowRate + ...
+                            nodeLinkSystemConductance * ...
+                            (obj.Nodes{node1Index}.waterPressure - ...
+                            obj.Nodes{node2Index}.waterPressure);
+                    elseif obj.Nodes{node2Index}.x_coordinate < surfaceLocation && ...
+                            obj.Nodes{node1Index}.x_coordinate > surfaceLocation 
+                        % calculate the flow rate of the fluid
+                        flowRate = flowRate - ...
                             nodeLinkSystemConductance * ...
                             (obj.Nodes{node1Index}.waterPressure - ...
                             obj.Nodes{node2Index}.waterPressure);
@@ -280,13 +286,13 @@ classdef Network < handle & Fluids
         
         %% Primary Drainage  
         function PrimaryDrainage(obj)            
-            %% Network is initialy water saturated
-            for i = 1:obj.numberOfNodes
-                obj.Nodes{i}.occupancy = 'A';
-            end
-            for i = 1:obj.numberOfLinks
-                obj.Links{i}.occupancy = 'A';
-            end
+%             %% Network is initialy water saturated
+%             for i = 1:obj.numberOfNodes
+%                 obj.Nodes{i}.occupancy = 'A';
+%             end
+%             for i = 1:obj.numberOfLinks
+%                 obj.Links{i}.occupancy = 'A';
+%             end
             
              %% determining the capillary pressure level interval
              Pc_threshold = zeros(obj.numberOfLinks,1);  
@@ -324,8 +330,9 @@ classdef Network < handle & Fluids
                  
              %% Add Links which have Pc_threshold < Pc in each steps and also have oil-saturated neighbour Node 
              while new > 0
+%               while min(nonzeros(Pc_threshold_n))<= Pc
                  %check & sort Links based on Pc_Threshold
-                 [Pc_th, ix] = sort(Pc_threshold_n(1:end), 1);
+                 [~, ix] = sort(Pc_threshold_n(1:end), 1);
                  throat_list = ix;
                  index = 12545-new+1;
                  new = new-1;
@@ -336,18 +343,18 @@ classdef Network < handle & Fluids
                      % if the link is connected to inlet (index of node 1 is -1 which does not exist) 
                      if obj.Links{throat_list(index)}.isInlet
                          node_index = node2Index;
-                         if obj.Nodes{node_index}.occupancy == 'A'
+                         if obj.Nodes{node_index}.occupancy == 'A' && obj.Nodes{node_index}.thresholdPressure <= Pc
                              obj.Nodes{node_index}.occupancy = 'B';
                               Pc_threshold_n(obj.Nodes{node_index}.connectedLinks)= Pc_threshold(obj.Nodes{node_index}.connectedLinks);                             
                              new = new + obj.Nodes{node_index}.connectionNumber;
                          end 
                      elseif ~obj.Links{throat_list(index)}.isInlet && ~obj.Links{throat_list(index)}.isOutlet
-                         if obj.Nodes{node1Index}.occupancy == 'A'
+                         if obj.Nodes{node1Index}.occupancy == 'A' && obj.Nodes{node1Index}.thresholdPressure <= Pc
                              obj.Nodes{node1Index}.occupancy = 'B';                                 
                              Pc_threshold_n(obj.Nodes{node1Index}.connectedLinks)= Pc_threshold(obj.Nodes{node1Index}.connectedLinks);                         
                              new = new + obj.Nodes{node1Index}.connectionNumber;
                          end
-                         if obj.Nodes{node2Index}.occupancy == 'A'
+                         if obj.Nodes{node2Index}.occupancy == 'A' && obj.Nodes{node2Index}.thresholdPressure <= Pc
                              obj.Nodes{node2Index}.occupancy = 'B';
                              Pc_threshold_n(obj.Nodes{node2Index}.connectedLinks)= Pc_threshold(obj.Nodes{node2Index}.connectedLinks);
                              new = new + obj.Nodes{node2Index}.connectionNumber;
@@ -373,6 +380,7 @@ classdef Network < handle & Fluids
              else
                  Pc = Pc + Pc_interval;                 
              end
+% Pc = Pc + 10;
              t = t + 1; 
              end             
              fprintf('simTimes is: %f \n', t);         

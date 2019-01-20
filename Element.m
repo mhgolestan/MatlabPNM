@@ -1,4 +1,4 @@
-classdef Element
+classdef Element<Fluids
     %UNTITLED Summary of this class goes here
     %   Detailed explanation goes here
     
@@ -40,17 +40,17 @@ classdef Element
         oilPressure
         gasPressure
         thresholdPressure
-        occupancy;
+        occupancy = 'A';
         
      
     end
     
     methods
-        function ThresholdPressure = calculateThresholdPressurePistonLike (obj, sig_ow)
+        function ThresholdPressure = calculateThresholdPressurePistonLike (obj)
          % calculateThresholdPressurePistonLike Summary of this method goes here
-         % Detailed explanation goes here         
+         % Detailed explanation goes here  
              if strcmp(obj.geometry , 'Circle')== 1
-                 ThresholdPressure = 2*sig_ow*cos(obj.receedingContactAngle)/obj.radius;
+                 ThresholdPressure = 2*obj.sig_ow *cos(obj.receedingContactAngle)/obj.radius;
              else
                  nominator = 0;
                  halfAngles = [obj.halfAngle1, obj.halfAngle2,obj.halfAngle3, obj.halfAngle4];
@@ -62,7 +62,7 @@ classdef Element
                          nominator = nominator +  (E2 - E0);
                      end
                  end
-                 ThresholdPressure = (sig_ow / obj.radius)*...
+                 ThresholdPressure = (obj.sig_ow / obj.radius)*...
                      cos(obj.receedingContactAngle)*(1+sqrt(1 -(4*obj.shapeFactor*...
                      nominator)/(cos(obj.receedingContactAngle)^2)));
              end

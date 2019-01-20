@@ -24,10 +24,10 @@ classdef Fluids < handle
     
     methods
          function obj = Fluids()
-             obj.waterViscosity = 0.001;
-             obj.oilViscosity = 0.001;
+             obj.waterViscosity = 0.00105;
+             obj.oilViscosity = 0.00139;
              obj.gasViscosity = 0.00001;
-             obj.sig_ow = 20e-3; % N/m
+             obj.sig_ow = 10e-3; % N/m
          end
 %         function obj = Fluids(Type)
 %            %Fluids Construct an instance of class Fluids
