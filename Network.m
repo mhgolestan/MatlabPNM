@@ -77,6 +77,8 @@ classdef Network < handle & Fluids
                                     link_2_values(6),... %linkLength,...
                                     link_2_values(7),... %volume,...
                                     link_2_values(8)); %clayVolume
+                                
+                                
             end
             
             %closing the files
@@ -102,7 +104,57 @@ classdef Network < handle & Fluids
             % pressureDistribution Summary of this method goes here
             %   Detailed explanation goes here
             Factor = zeros(obj.numberOfNodes, obj.numberOfNodes);
-            B = zeros(obj.numberOfNodes, 1);  
+            B = zeros(obj.numberOfNodes, 1);
+
+%             for thisNodeIndex = 1:obj.numberOfNodes
+%                 connectedLinksToThisNode = obj.Nodes{thisNodeIndex}.connectedLinks;
+%                 connectedNodesToThisNode = obj.Nodes{thisNodeIndex}.connectedNodes;
+%                 
+%                 for iterator = 1:length(connectedLinksToThisNode)
+%                    nodeLinkSystemConductance = 0;
+%                    connectedLinkIndex = connectedLinksToThisNode(iterator);
+%                    connectedNodeIndex = connectedNodesToThisNode(iterator);
+%                    if obj.Links{connectedLinkIndex}.isInlet
+%                        nodeLinkSystemConductance = ((obj.Links{connectedLinkIndex}.linkLength /...
+%                         obj.Links{connectedLinkIndex}.conductance) +...
+%                         0.5 *...
+%                         ((obj.Links{connectedLinkIndex}.pore2Length / obj.Nodes{thisNodeIndex}.conductance)))^-1;
+%                     
+%                     Factor(thisNodeIndex, thisNodeIndex) = Factor(thisNodeIndex, thisNodeIndex) + nodeLinkSystemConductance;
+%                     B(thisNodeIndex) = nodeLinkSystemConductance * inletPressure;
+% 
+%                    elseif obj.Links{connectedLinkIndex}.isOutlet
+%                        nodeLinkSystemConductance = ((obj.Links{connectedLinkIndex}.linkLength /...
+%                         obj.Links{connectedLinkIndex}.conductance) +...
+%                         0.5 *...
+%                         ((obj.Links{connectedLinkIndex}.pore1Length / obj.Nodes{thisNodeIndex}.conductance)))^-1;
+%                     
+%                     Factor(thisNodeIndex, thisNodeIndex) = Factor(thisNodeIndex, thisNodeIndex) + nodeLinkSystemConductance;
+%                     B(thisNodeIndex) = nodeLinkSystemConductance * outletPressure;
+%                    
+%                    else
+%                        if thisNodeIndex == obj.Links{connectedLinkIndex}.pore1Index
+%                            nodeLinkSystemConductance = ((obj.Links{connectedLinkIndex}.linkLength /...
+%                             obj.Links{connectedLinkIndex}.conductance) +...
+%                             0.5 *...
+%                             ((obj.Links{connectedLinkIndex}.pore1Length / obj.Nodes{thisNodeIndex}.conductance) +...
+%                             (obj.Links{connectedLinkIndex}.pore2Length / obj.Nodes{connectedNodeIndex}.conductance)))^-1;  
+%                        else
+%                          nodeLinkSystemConductance = ((obj.Links{connectedLinkIndex}.linkLength /...
+%                             obj.Links{connectedLinkIndex}.conductance) +...
+%                             0.5 *...
+%                             ((obj.Links{connectedLinkIndex}.pore2Length / obj.Nodes{thisNodeIndex}.conductance) +...
+%                             (obj.Links{connectedLinkIndex}.pore1Length / obj.Nodes{connectedNodeIndex}.conductance)))^-1;  
+%                        end
+%                        
+%                         Factor(thisNodeIndex, thisNodeIndex) = Factor(thisNodeIndex, thisNodeIndex) + nodeLinkSystemConductance;
+%                             
+%                         Factor(thisNodeIndex, connectedNodeIndex) = Factor(thisNodeIndex, connectedNodeIndex) - nodeLinkSystemConductance;
+% %                         Factor(connectedNodeIndex, thisNodeIndex) = Factor(connectedNodeIndex, thisNodeIndex) - nodeLinkSystemConductance;
+% 
+%                    end
+%                end
+%             end
             
             for ii = 1:obj.numberOfLinks
                 
@@ -111,7 +163,7 @@ classdef Network < handle & Fluids
 
                 % if the link is connected to inlet (index of node 1 is -1 which does not exist) 
                 if obj.Links{ii}.isInlet
-                    nodeLinkSystemConductance = ((obj.Links{ii}.linkLength /...
+                    nodeLinkSystemConductance = ((obj.Links{ii}.length /...
                         obj.Links{ii}.conductance) +...
                         0.5 *...
                         ((obj.Links{ii}.pore2Length / obj.Nodes{node2Index}.conductance)))^-1;
@@ -120,7 +172,7 @@ classdef Network < handle & Fluids
                     B(node2Index) = nodeLinkSystemConductance * inletPressure;
                 % if the link is connected to outlet (index of node 2 is 0 which does not exist)
                 elseif obj.Links{ii}.isOutlet
-                     nodeLinkSystemConductance = ((obj.Links{ii}.linkLength /...
+                     nodeLinkSystemConductance = ( (obj.Links{ii}.length /...
                         obj.Links{ii}.conductance) +...
                         0.5 *...
                         ((obj.Links{ii}.pore1Length / obj.Nodes{node1Index}.conductance)))^-1;
@@ -129,7 +181,7 @@ classdef Network < handle & Fluids
                     
                 %if the link is neither inlet nor outlet    
                 else
-                    nodeLinkSystemConductance = ((obj.Links{ii}.linkLength /...
+                    nodeLinkSystemConductance = ((obj.Links{ii}.length /...
                         obj.Links{ii}.conductance) +...
                         0.5 *...
                         ((obj.Links{ii}.pore1Length / obj.Nodes{node1Index}.conductance) +...
@@ -145,14 +197,14 @@ classdef Network < handle & Fluids
             
             % using Preconditioned conjugate gradients method to solve the
             % pressure distribution 
-            nodesPressure = pcg(Factor,B,1e-3,300);
+            nodesPressure = pcg(Factor, B, 1e-10, 500);
             
             %assign the pressure values to each node
             for ii = 1:obj.numberOfNodes
                 obj.Nodes{ii}.waterPressure = nodesPressure(ii);      
             end
             
-            %assign pressure values to links, since the surface whci
+            %assign pressure values to links, since the surface where
             %flowrate is calculated through might pass through the links
             for ii = 1:obj.numberOfLinks
                 if obj.Links{ii}.isInlet
@@ -239,8 +291,8 @@ classdef Network < handle & Fluids
                    %if the two connected nodes pass through the sufrace
                     %count the flow of fluid passing the link connecting
                     %them
-                    if obj.Nodes{node1Index}.x_coordinate < surfaceLocation && ...
-                            obj.Nodes{node2Index}.x_coordinate > surfaceLocation   
+                    if (obj.Nodes{node1Index}.x_coordinate < surfaceLocation && ...
+                            obj.Nodes{node2Index}.x_coordinate > surfaceLocation) 
                         
                         %calculate the conductivity of the linkNode system
                         nodeLinkSystemConductance = ((obj.Links{ii}.linkLength /...
@@ -248,11 +300,29 @@ classdef Network < handle & Fluids
                             0.5 *...
                             ((obj.Links{ii}.pore1Length / obj.Nodes{node1Index}.conductance) +...
                             (obj.Links{ii}.pore2Length / obj.Nodes{node2Index}.conductance)))^-1;
+<<<<<<< HEAD
                                                 % calculate the flow rate of the fluid
+||||||| merged common ancestors
+                        
+                        % calculate the flow rate of the fluid
+=======
+%                     elseif  (obj.Nodes{node1Index}.x_coordinate > surfaceLocation && ...
+%                             obj.Nodes{node2Index}.x_coordinate < surfaceLocation)
+% 
+%                         nodeLinkSystemConductance = -((obj.Links{ii}.linkLength /...
+%                             obj.Links{ii}.conductance) +...
+%                             0.5 *...
+%                             ((obj.Links{ii}.pore1Length / obj.Nodes{node1Index}.conductance) +...
+%                             (obj.Links{ii}.pore2Length / obj.Nodes{node2Index}.conductance)))^-1;
+
+                        
+                        % calculate the flow rate of the fluid
+>>>>>>> 42f52909bcdc50e7fda9a57d8d0d225859b0f03d
                         flowRate = flowRate + ...
                             nodeLinkSystemConductance * ...
                             (obj.Nodes{node1Index}.waterPressure - ...
                             obj.Nodes{node2Index}.waterPressure);
+<<<<<<< HEAD
                     elseif obj.Nodes{node2Index}.x_coordinate < surfaceLocation && ...
                             obj.Nodes{node1Index}.x_coordinate > surfaceLocation 
                         % calculate the flow rate of the fluid
@@ -261,6 +331,10 @@ classdef Network < handle & Fluids
                             (obj.Nodes{node1Index}.waterPressure - ...
                             obj.Nodes{node2Index}.waterPressure);
                         
+||||||| merged common ancestors
+                        
+=======
+>>>>>>> 42f52909bcdc50e7fda9a57d8d0d225859b0f03d
                     end
                 end 
             end
@@ -274,14 +348,13 @@ classdef Network < handle & Fluids
             obj.pressureDistribution(1,0);
             obj.calculateFlowRate();
             % unit conversion from m2 to Darcy
-%             unitConvertor = 1.01325E+12;
+%             unitConvertor = 1.01325E+15;
             % for pressure difference in the formula the corresponding
             % pressure drop between the vertical surfaces should be
             % calculated (based on Piri B1 formula)
 %             obj.absolutePermeability = unitConvertor * obj.totalFlowRate * obj.xDimension / (obj.yDimension* obj.zDimension); %/ ()
-            unitConvertor = 9.86E+13;
-            obj.absolutePermeability = unitConvertor * obj.totalFlowRate * obj.xDimension * obj.waterViscosity ...
-            / (obj.yDimension* obj.zDimension); 
+            unitConvertor = 9.86E+16;
+            obj.absolutePermeability = unitConvertor * obj.totalFlowRate * obj.xDimension * obj.waterViscosity / (obj.yDimension * obj.zDimension); 
         end
         
         %% Primary Drainage  
