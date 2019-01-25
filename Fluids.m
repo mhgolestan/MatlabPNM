@@ -24,7 +24,7 @@ classdef Fluids < handle
     
     methods
          function obj = Fluids()
-             obj.waterViscosity = 0.00105;
+             obj.waterViscosity = 0.001;
              obj.oilViscosity = 0.00139;
              obj.gasViscosity = 0.00001;
              obj.sig_ow = 10e-3; % N/m

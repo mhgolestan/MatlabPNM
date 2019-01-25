@@ -47,8 +47,8 @@ classdef Node < Element
             obj.radius = radius;
             obj.shapeFactor = shapeFactor;
             obj.clayVolume = clayVolume;
-            water_viscosity = 0.001;
-            sig_ow = 20e-3; % N/m
+%             water_viscosity = 0.001;
+%             sig_ow = 20e-3; % N/m
             
             
             % Geometry and conductance specification of the elements is
@@ -64,15 +64,15 @@ classdef Node < Element
                 obj.halfAngle3 = pi / 2 - obj.halfAngle1 - obj.halfAngle2;
                 obj.halfAngle4 = nan;
                 obj.area = obj.radius^2/4/obj.shapeFactor;                
-                obj.conductance = 3 * obj.area^2 * obj.shapeFactor /water_viscosity / 5;
-            elseif obj.shapeFactor > sqrt(3) / 36 && obj.shapeFactor < 1 / 16
+                obj.conductance = 3 * obj.area^2 * obj.shapeFactor /obj.waterViscosity / 5;
+            elseif obj.shapeFactor > sqrt(3) / 36 && obj.shapeFactor <= 1 / 16
                 obj.geometry = 'Square';
                 obj.halfAngle1 = pi / 4;
                 obj.halfAngle2 = pi / 4;
                 obj.halfAngle3 = pi / 4;
                 obj.halfAngle4 = pi / 4;
                 obj.area = 4*obj.radius^2;                
-                obj.conductance = 0.5623 * obj.area^2 * obj.shapeFactor /water_viscosity;
+                obj.conductance = 0.5623 * obj.area^2 * obj.shapeFactor /obj.waterViscosity;
             elseif obj.shapeFactor > 1 / 16
                 obj.geometry = 'Circle';
                 obj.halfAngle1 = nan;
@@ -80,7 +80,7 @@ classdef Node < Element
                 obj.halfAngle3 = nan;
                 obj.halfAngle4 = nan;
                 obj.area = pi*obj.radius^2;                
-                obj.conductance = 0.5 * obj.area^2 * obj.shapeFactor /water_viscosity;
+                obj.conductance = 0.5 * obj.area^2 * obj.shapeFactor /obj.waterViscosity;
             end   
              obj.thresholdPressure = obj.calculateThresholdPressurePistonLike();
         end
