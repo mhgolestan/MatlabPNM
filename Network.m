@@ -259,24 +259,26 @@ classdef Network < handle & Fluids
             waterVolume = 0;   
             vol=0;
             for i = 1:obj.numberOfNodes
-                if ~obj.Nodes{i}.isInlet && ~obj.Nodes{i}.isOutlet 
+%                 if ~obj.Nodes{i}.isInlet && ~obj.Nodes{i}.isOutlet 
                 if obj.Nodes{i}.occupancy == 'B'
-                     waterVolume = waterVolume + (obj.Nodes{i}.waterCrossSectionArea / obj.Nodes{i}.area) *obj.Nodes{i}.volume;
+                     waterVolume = waterVolume + (obj.Nodes{i}.waterCrossSectionArea / obj.Nodes{i}.area) *...
+                         (obj.Nodes{i}.volume + obj.Nodes{i}.clayVolume);
                 else
-                     waterVolume = waterVolume + obj.Nodes{i}.volume;
+                     waterVolume = waterVolume + obj.Nodes{i}.volume + obj.Nodes{i}.clayVolume;
                 end
-                vol=vol+obj.Nodes{i}.volume;
-                end
+                vol=vol+obj.Nodes{i}.volume + obj.Nodes{i}.clayVolume;
+%                 end
             end
             for i = 1:obj.numberOfLinks   
-                if ~obj.Links{i}.isInlet && ~obj.Links{i}.isOutlet 
+%                 if ~obj.Links{i}.isInlet && ~obj.Links{i}.isOutlet 
                 if obj.Links{i}.occupancy == 'B'
-                     waterVolume = waterVolume+ (obj.Links{i}.waterCrossSectionArea / obj.Links{i}.area) * obj.Links{i}.volume;
+                     waterVolume = waterVolume+ (obj.Links{i}.waterCrossSectionArea / obj.Links{i}.area) *...
+                         (obj.Links{i}.volume + obj.Links{i}.clayVolume);
                 else
-                     waterVolume = waterVolume + obj.Links{i}.volume;
+                     waterVolume = waterVolume + obj.Links{i}.volume + obj.Links{i}.clayVolume;
                 end  
-                vol=vol+obj.Links{i}.volume;
-                end
+                vol=vol+obj.Links{i}.volume + obj.Links{i}.clayVolume;
+%                 end
             end  
             Sw_drain = waterVolume / vol;            
         end
@@ -378,7 +380,7 @@ classdef Network < handle & Fluids
                   if obj.Links{i}.isInlet && obj.Links{i}.occupancy == 'A'
                      if Pc_threshold(i) <= Pc  
 %                          obj.Links{i}.occupancy = 'B';
-                         if obj.Nodes{node2Index}.occupancy == 'A'
+                         if obj.Nodes{node2Index}.occupancy == 'A' && obj.Nodes{node2Index}.thresholdPressure <=Pc
                          Pc_threshold_n(i,1)= Pc_threshold(i);
                          end
                      end
@@ -389,12 +391,12 @@ classdef Network < handle & Fluids
                   elseif ~obj.Links{i}.isOutlet && ~obj.Links{i}.isInlet && obj.Links{i}.occupancy == 'A' && Pc_threshold(i) <= Pc                      
                       if obj.Nodes{node1Index}.occupancy == 'B' 
 %                           obj.Links{i}.occupancy = 'B';
-                          if obj.Nodes{node2Index}.occupancy == 'A'
+                          if obj.Nodes{node2Index}.occupancy == 'A' && obj.Nodes{node2Index}.thresholdPressure <=Pc
                               Pc_threshold_n(i,1)= Pc_threshold(i);
                           end
                       elseif obj.Nodes{node2Index}.occupancy == 'B'
 %                           obj.Links{i}.occupancy = 'B';
-                          if obj.Nodes{node1Index}.occupancy == 'A'
+                          if obj.Nodes{node1Index}.occupancy == 'A' && obj.Nodes{node1Index}.thresholdPressure <=Pc
                               Pc_threshold_n(i,1)= Pc_threshold(i);
                           end
                       end                      
@@ -412,7 +414,7 @@ classdef Network < handle & Fluids
                  node2Index = obj.Links{i}.pore2Index;
                  if obj.Links{i}.isInlet && obj.Links{i}.occupancy == 'A'&& Pc_threshold(i) <= Pc
                          obj.Links{i}.occupancy = 'B';
-                         if obj.Nodes{node2Index}.occupancy == 'A'
+                         if obj.Nodes{node2Index}.occupancy == 'A' && obj.Nodes{node2Index}.thresholdPressure <=Pc
                              obj.Nodes{node2Index}.occupancy = 'B';
                              for j=1:obj.Nodes{node2Index}.connectionNumber
                                  if obj.Nodes{node2Index}.connectedLinks(j)~=i
@@ -427,7 +429,7 @@ classdef Network < handle & Fluids
                   elseif ~obj.Links{i}.isOutlet && ~obj.Links{i}.isInlet && obj.Links{i}.occupancy == 'A' && Pc_threshold(i) <= Pc                      
                       if obj.Nodes{node1Index}.occupancy == 'B' 
                           obj.Links{i}.occupancy = 'B';
-                          if obj.Nodes{node2Index}.occupancy == 'A'
+                          if obj.Nodes{node2Index}.occupancy == 'A' && obj.Nodes{node2Index}.thresholdPressure <=Pc
                               obj.Nodes{node2Index}.occupancy = 'B';
                               for j=1:obj.Nodes{node2Index}.connectionNumber
                                  if obj.Nodes{node2Index}.connectedLinks(j)~=i
@@ -437,7 +439,7 @@ classdef Network < handle & Fluids
                           end
                       elseif obj.Nodes{node2Index}.occupancy == 'B'
                           obj.Links{i}.occupancy = 'B';
-                          if obj.Nodes{node1Index}.occupancy == 'A'
+                          if obj.Nodes{node1Index}.occupancy == 'A' && obj.Nodes{node1Index}.thresholdPressure <=Pc
                               obj.Nodes{node1Index}.occupancy = 'B';
                               for j=1:obj.Nodes{node1Index}.connectionNumber
                                  if obj.Nodes{node1Index}.connectedLinks(j)~=i
