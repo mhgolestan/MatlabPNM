@@ -1,4 +1,4 @@
-classdef Link < Element & Fluids
+classdef Link < Element
     
     %LINK is a class for link objects
     %   Detailed explanation goes here
@@ -48,8 +48,8 @@ classdef Link < Element & Fluids
             obj.linkLength = linkLength;
             obj.volume = volume;
             obj.clayVolume = clayVolume;
-%             water_viscosity = 0.001;
-%             sig_ow = 20e-3; % N/m
+            water_viscosity = 0.001;
+            sig_ow = 20e-3; % N/m
             
             
             %Cheking inlet or outlet status of the link
@@ -74,7 +74,7 @@ classdef Link < Element & Fluids
                 obj.halfAngle3 = pi / 2 - obj.halfAngle1 - obj.halfAngle2;
                 obj.halfAngle4 = nan;
                 obj.area = obj.radius^2/4/obj.shapeFactor;                
-                obj.conductance = 3 * obj.area^2 * obj.shapeFactor /obj.waterViscosity / 5;
+                obj.conductance = 3 * obj.area^2 * obj.shapeFactor /water_viscosity / 5;
             elseif obj.shapeFactor > sqrt(3) / 36 && obj.shapeFactor <= 1 / 16
                 obj.geometry = 'Square';
                 obj.halfAngle1 = pi / 4;
@@ -82,7 +82,7 @@ classdef Link < Element & Fluids
                 obj.halfAngle3 = pi / 4;
                 obj.halfAngle4 = pi / 4;
                 obj.area = 4*obj.radius^2;                
-                obj.conductance = 0.5623 * obj.area^2 * obj.shapeFactor /obj.waterViscosity;
+                obj.conductance = 0.5623 * obj.area^2 * obj.shapeFactor /water_viscosity;
             elseif obj.shapeFactor > 1 / 16
                 obj.geometry = 'Circle';
                 obj.halfAngle1 = nan;

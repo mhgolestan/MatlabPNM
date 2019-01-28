@@ -74,7 +74,7 @@ classdef Element<Fluids
              cornerArea = zeros(1,4);
              cornerConductance = zeros(1,4);
              %Raduis of Curvature
-             Rc = network.waterViscosity / Pc;
+             Rc = network.sig_ow / Pc;
              for jj = 1:4
                  if ~isnan(halfAngles(jj))
                      % Based on Piri_2005: eq A4 & A5 
@@ -116,13 +116,11 @@ classdef Element<Fluids
          function [oilCrossSectionArea, oilConductance] = calculateOilConductance(obj, network)                             
              oilCrossSectionArea = obj.area - obj.waterCrossSectionArea;
              if strcmp(obj.geometry , 'Circle')== 1
-                 oilConductance = (oilCrossSectionArea / obj.area)*0.5 * obj.area^2 * ...
-                     obj.shapeFactor /network.oilViscosity;
+                 oilConductance = oilCrossSectionArea^2 * 0.5 * obj.shapeFactor /network.oilViscosity;
              elseif strcmp(obj.geometry , 'Triangle')== 1
-                 oilConductance = oilCrossSectionArea * 3 * obj.radius^2 / network.oilViscosity/20;
+                 oilConductance = oilCrossSectionArea^2 * 3  * obj.shapeFactor / network.oilViscosity/5;
              elseif strcmp(obj.geometry , 'Square')== 1
-                 oilConductance = (oilCrossSectionArea / obj.area)*0.5623 * obj.area^2 *...
-                     obj.shapeFactor /network.oilViscosity;
+                 oilConductance = oilCrossSectionArea^2 *0.5623 * obj.area^2 * obj.shapeFactor /network.oilViscosity;
              end              
          end
     end

@@ -17,7 +17,6 @@ classdef Network < handle & Fluids
         poreVolume
         Sw_drain
         Pc_drain_curve
-        nodeLinkSystemConductance
         
     end
     
@@ -164,34 +163,36 @@ classdef Network < handle & Fluids
 
                 % if the link is connected to inlet (index of node 1 is -1 which does not exist) 
                 if obj.Links{ii}.isInlet
-                    obj.nodeLinkSystemConductance(ii) = ((obj.Links{ii}.linkLength /...
+                    nodeLinkSystemConductance = ((obj.Links{ii}.linkLength /...
                         obj.Links{ii}.conductance) +...
                         0.5 *...
                         ((obj.Links{ii}.pore2Length / obj.Nodes{node2Index}.conductance)))^-1;
                     
-                    Factor(node2Index, node2Index) = Factor(node2Index, node2Index) + obj.nodeLinkSystemConductance(ii);
-                    B(node2Index) = obj.nodeLinkSystemConductance(ii) * inletPressure;
+                    Factor(node2Index, node2Index) = Factor(node2Index, node2Index) + nodeLinkSystemConductance;
+                    B(node2Index) = nodeLinkSystemConductance * inletPressure;
+%                     B(node2Index) = nodeLinkSystemConductance * (inletPressure-9810*obj.Nodes{node2Index}.z_coordinate);
                 % if the link is connected to outlet (index of node 2 is 0 which does not exist)
                 elseif obj.Links{ii}.isOutlet
-                     obj.nodeLinkSystemConductance(ii) = ( (obj.Links{ii}.linkLength /...
+                     nodeLinkSystemConductance = ( (obj.Links{ii}.linkLength /...
                         obj.Links{ii}.conductance) +...
                         0.5 *...
                         ((obj.Links{ii}.pore1Length / obj.Nodes{node1Index}.conductance)))^-1;
+                    Factor(node1Index, node1Index) = Factor(node1Index, node1Index) + nodeLinkSystemConductance;
+                    B(node1Index) = nodeLinkSystemConductance * outletPressure;
+%                     B(node1Index) = nodeLinkSystemConductance * (outletPressure-9810*obj.Nodes{node1Index}.z_coordinate);
                     
-                    Factor(node1Index, node1Index) = Factor(node1Index, node1Index) + obj.nodeLinkSystemConductance(ii);
-                    B(node1Index) = obj.nodeLinkSystemConductance(ii) * outletPressure;                    
                 %if the link is neither inlet nor outlet    
                 else
-                    obj.nodeLinkSystemConductance(ii) = ((obj.Links{ii}.linkLength /...
+                    nodeLinkSystemConductance = ((obj.Links{ii}.linkLength /...
                         obj.Links{ii}.conductance) +...
                         0.5 *...
                         ((obj.Links{ii}.pore1Length / obj.Nodes{node1Index}.conductance) +...
                         (obj.Links{ii}.pore2Length / obj.Nodes{node2Index}.conductance)))^-1;   
                 
-                    Factor(node1Index, node1Index) = Factor(node1Index, node1Index) + obj.nodeLinkSystemConductance(ii);
-                    Factor(node2Index, node2Index) = Factor(node2Index, node2Index) + obj.nodeLinkSystemConductance(ii);
-                    Factor(node1Index, node2Index) = Factor(node1Index, node2Index) - obj.nodeLinkSystemConductance(ii);
-                    Factor(node2Index, node1Index) = Factor(node2Index, node1Index) - obj.nodeLinkSystemConductance(ii);
+                    Factor(node1Index, node1Index) = Factor(node1Index, node1Index) + nodeLinkSystemConductance;
+                    Factor(node2Index, node2Index) = Factor(node2Index, node2Index) + nodeLinkSystemConductance;
+                    Factor(node1Index, node2Index) = Factor(node1Index, node2Index) - nodeLinkSystemConductance;
+                    Factor(node2Index, node1Index) = Factor(node2Index, node1Index) - nodeLinkSystemConductance;
                    
                 end     
             end
@@ -256,23 +257,28 @@ classdef Network < handle & Fluids
             calculateConductance(obj, Pc);
             % Water Saturation Calculation
             waterVolume = 0;   
+            vol=0;
             for i = 1:obj.numberOfNodes
+                if ~obj.Nodes{i}.isInlet && ~obj.Nodes{i}.isOutlet 
                 if obj.Nodes{i}.occupancy == 'B'
-                     waterVolume = waterVolume + (obj.Nodes{i}.waterCrossSectionArea / obj.Nodes{i}.area) *...
-                         obj.Nodes{i}.volume + obj.Nodes{i}.clayVolume;
+                     waterVolume = waterVolume + (obj.Nodes{i}.waterCrossSectionArea / obj.Nodes{i}.area) *obj.Nodes{i}.volume;
                 else
-                     waterVolume = waterVolume + obj.Nodes{i}.volume + obj.Nodes{i}.clayVolume;
+                     waterVolume = waterVolume + obj.Nodes{i}.volume;
+                end
+                vol=vol+obj.Nodes{i}.volume;
                 end
             end
-            for i = 1:obj.numberOfLinks                
+            for i = 1:obj.numberOfLinks   
+                if ~obj.Links{i}.isInlet && ~obj.Links{i}.isOutlet 
                 if obj.Links{i}.occupancy == 'B'
-                     waterVolume = waterVolume+ (obj.Links{i}.waterCrossSectionArea / obj.Links{i}.area) * ...
-                         obj.Links{i}.volume + obj.Links{i}.clayVolume + obj.Links{i}.clayVolume;
+                     waterVolume = waterVolume+ (obj.Links{i}.waterCrossSectionArea / obj.Links{i}.area) * obj.Links{i}.volume;
                 else
-                     waterVolume = waterVolume + obj.Links{i}.volume + obj.Links{i}.clayVolume;
+                     waterVolume = waterVolume + obj.Links{i}.volume;
                 end  
+                vol=vol+obj.Links{i}.volume;
+                end
             end  
-            Sw_drain = waterVolume / obj.poreVolume;            
+            Sw_drain = waterVolume / vol;            
         end
         %% This function calculates the flow rate for each phase in the netwrok
         function calculateFlowRate(obj)
@@ -295,13 +301,22 @@ classdef Network < handle & Fluids
                     if (obj.Nodes{node1Index}.x_coordinate < surfaceLocation && ...
                             obj.Nodes{node2Index}.x_coordinate > surfaceLocation) ||...
                         (obj.Nodes{node2Index}.x_coordinate < surfaceLocation && ...
-                            obj.Nodes{node1Index}.x_coordinate > surfaceLocation)                                                            
+                            obj.Nodes{node1Index}.x_coordinate > surfaceLocation)    
+                                                         
+                        
+                        %calculate the conductivity of the linkNode system
+                        nodeLinkSystemConductance = ((obj.Links{ii}.linkLength /...
+                            obj.Links{ii}.conductance) +...
+                            0.5 *...
+                            ((obj.Links{ii}.pore1Length / obj.Nodes{node1Index}.conductance) +...
+                            (obj.Links{ii}.pore2Length / obj.Nodes{node2Index}.conductance)))^-1;
                         
                         % calculate the flow rate of the fluid
                         flowRate = flowRate + ...
-                            abs(obj.nodeLinkSystemConductance(ii) * ...
+                            abs(nodeLinkSystemConductance * ...
                             (obj.Nodes{node1Index}.waterPressure - ...                         
                             obj.Nodes{node2Index}.waterPressure));    
+%                           + 9810*(obj.Nodes{node1Index}.z_coordinate-obj.Nodes{node2Index}.z_coordinate)-...
                     end
                 end 
             end
@@ -314,24 +329,18 @@ classdef Network < handle & Fluids
             %   Detailed explanation goes here
             obj.pressureDistribution(1,0);
             obj.calculateFlowRate();
+            % unit conversion from m2 to Darcy
+%             unitConvertor = 1.01325E+15;
             % for pressure difference in the formula the corresponding
             % pressure drop between the vertical surfaces should be
             % calculated (based on Piri B1 formula)
-            % unit conversion from m2 to Darcy
+%             obj.absolutePermeability = unitConvertor * obj.totalFlowRate * obj.xDimension / (obj.yDimension* obj.zDimension); %/ ()
             unitConvertor = 1.01325E+15;
             obj.absolutePermeability = unitConvertor * obj.totalFlowRate * obj.xDimension * obj.waterViscosity / (obj.yDimension * obj.zDimension); 
         end
         
         %% Primary Drainage  
-        function PrimaryDrainage(obj)            
-%             %% Network is initialy water saturated
-%             for i = 1:obj.numberOfNodes
-%                 obj.Nodes{i}.occupancy = 'A';
-%             end
-%             for i = 1:obj.numberOfLinks
-%                 obj.Links{i}.occupancy = 'A';
-%             end
-            
+        function PrimaryDrainage(obj)              
              %% determining the capillary pressure level interval
              Pc_threshold = zeros(obj.numberOfLinks,1);  
              Pc_threshold_n = zeros(obj.numberOfLinks,1); 
@@ -342,7 +351,7 @@ classdef Network < handle & Fluids
              % Pc_interval
              max_Pc = max(Pc_threshold);
              min_Pc = min(Pc_threshold);
-             Pc_interval = (max_Pc - min_Pc)/50;
+             Pc_interval = (max_Pc - min_Pc)/40;
              Pc_drain_max = 0.5*max_Pc;
 %              simTimes = Pc_drain_max / Pc_interval;
              fprintf('\nPc_interval is: %f \n', Pc_interval);
@@ -355,51 +364,114 @@ classdef Network < handle & Fluids
              %% Cycle of increasing Pressure
              while Pc < Pc_drain_max              
                  
-             %% Find new inlet-Links with threshold pressure < Pc
-             new = 0;             
+             % Pc Step Calculation 
+             if  obj.Sw_drain(t,1) > 0.9 
+                 Pc = Pc + 0.2*Pc_interval;
+             else
+                 Pc = Pc + Pc_interval;                 
+             end    
+             t = t + 1;
+             %% Find new inlet-Links with threshold pressure < Pc             
              for i = 1:obj.numberOfLinks                  
-                  if obj.Links{i}.thresholdPressure <= Pc                    
-                     if obj.Links{i}.isInlet  
-                         new = new+1;   
+                  node1Index = obj.Links{i}.pore1Index;
+                  node2Index = obj.Links{i}.pore2Index;
+                  if obj.Links{i}.isInlet && obj.Links{i}.occupancy == 'A'
+                     if Pc_threshold(i) <= Pc  
+%                          obj.Links{i}.occupancy = 'B';
+                         if obj.Nodes{node2Index}.occupancy == 'A'
                          Pc_threshold_n(i,1)= Pc_threshold(i);
+                         end
                      end
+                  elseif obj.Links{i}.isOutlet && obj.Links{i}.occupancy == 'A'                     
+                           if obj.Nodes{node1Index}.occupancy == 'B' && Pc_threshold(i) <= Pc
+                               obj.Links{i}.occupancy = 'B';
+                           end
+                  elseif ~obj.Links{i}.isOutlet && ~obj.Links{i}.isInlet && obj.Links{i}.occupancy == 'A' && Pc_threshold(i) <= Pc                      
+                      if obj.Nodes{node1Index}.occupancy == 'B' 
+%                           obj.Links{i}.occupancy = 'B';
+                          if obj.Nodes{node2Index}.occupancy == 'A'
+                              Pc_threshold_n(i,1)= Pc_threshold(i);
+                          end
+                      elseif obj.Nodes{node2Index}.occupancy == 'B'
+%                           obj.Links{i}.occupancy = 'B';
+                          if obj.Nodes{node1Index}.occupancy == 'A'
+                              Pc_threshold_n(i,1)= Pc_threshold(i);
+                          end
+                      end                      
                  end
              end
                  
              %% Add Links which have Pc_threshold < Pc in each steps and also have oil-saturated neighbour Node 
-             while new > 0
-%               while min(nonzeros(Pc_threshold_n))<= Pc
+             while min(nonzeros(Pc_threshold_n))<= Pc
                  %check & sort Links based on Pc_Threshold
                  [~, ix] = sort(Pc_threshold_n(1:end), 1);
-                 throat_list = ix;
-                 index = 12545-new+1;
-                 new = new-1;
-                 if obj.Links{throat_list(index)}.occupancy == 'A' && obj.Links{throat_list(index)}.thresholdPressure <= Pc
-                     obj.Links{throat_list(index)}.occupancy = 'B';                     
-                     node1Index = obj.Links{throat_list(index)}.pore1Index;
-                     node2Index = obj.Links{throat_list(index)}.pore2Index;
-                     % if the link is connected to inlet (index of node 1 is -1 which does not exist) 
-                     if obj.Links{throat_list(index)}.isInlet
-                         node_index = node2Index;
-                         if obj.Nodes{node_index}.occupancy == 'A' && obj.Nodes{node_index}.thresholdPressure <= Pc
-                             obj.Nodes{node_index}.occupancy = 'B';
-                              Pc_threshold_n(obj.Nodes{node_index}.connectedLinks)= Pc_threshold(obj.Nodes{node_index}.connectedLinks);                             
-                             new = new + obj.Nodes{node_index}.connectionNumber;
-                         end 
-                     elseif ~obj.Links{throat_list(index)}.isInlet && ~obj.Links{throat_list(index)}.isOutlet
-                         if obj.Nodes{node1Index}.occupancy == 'A' && obj.Nodes{node1Index}.thresholdPressure <= Pc
-                             obj.Nodes{node1Index}.occupancy = 'B';                                 
-                             Pc_threshold_n(obj.Nodes{node1Index}.connectedLinks)= Pc_threshold(obj.Nodes{node1Index}.connectedLinks);                         
-                             new = new + obj.Nodes{node1Index}.connectionNumber;
-                         end
-                         if obj.Nodes{node2Index}.occupancy == 'A' && obj.Nodes{node2Index}.thresholdPressure <= Pc
+%                  throat_list = ix;
+                 i = ix(obj.numberOfLinks - length(nonzeros(Pc_threshold_n))+1);
+                 Pc_threshold_n(i) = 0;                 
+                 node1Index = obj.Links{i}.pore1Index;
+                 node2Index = obj.Links{i}.pore2Index;
+                 if obj.Links{i}.isInlet && obj.Links{i}.occupancy == 'A'&& Pc_threshold(i) <= Pc
+                         obj.Links{i}.occupancy = 'B';
+                         if obj.Nodes{node2Index}.occupancy == 'A'
                              obj.Nodes{node2Index}.occupancy = 'B';
-                             Pc_threshold_n(obj.Nodes{node2Index}.connectedLinks)= Pc_threshold(obj.Nodes{node2Index}.connectedLinks);
-                             new = new + obj.Nodes{node2Index}.connectionNumber;
+                             for j=1:obj.Nodes{node2Index}.connectionNumber
+                                 if obj.Nodes{node2Index}.connectedLinks(j)~=i
+                                     Pc_threshold_n(obj.Nodes{node2Index}.connectedLinks(j),1)= Pc_threshold(obj.Nodes{node2Index}.connectedLinks(j));
+                                 end
+                             end
                          end
-                     end   
+                  elseif obj.Links{i}.isOutlet && obj.Links{i}.occupancy == 'A'                     
+                           if obj.Nodes{node1Index}.occupancy == 'B' && Pc_threshold(i) <= Pc
+                               obj.Links{i}.occupancy = 'B';
+                           end
+                  elseif ~obj.Links{i}.isOutlet && ~obj.Links{i}.isInlet && obj.Links{i}.occupancy == 'A' && Pc_threshold(i) <= Pc                      
+                      if obj.Nodes{node1Index}.occupancy == 'B' 
+                          obj.Links{i}.occupancy = 'B';
+                          if obj.Nodes{node2Index}.occupancy == 'A'
+                              obj.Nodes{node2Index}.occupancy = 'B';
+                              for j=1:obj.Nodes{node2Index}.connectionNumber
+                                 if obj.Nodes{node2Index}.connectedLinks(j)~=i
+                                     Pc_threshold_n(obj.Nodes{node2Index}.connectedLinks(j),1)= Pc_threshold(obj.Nodes{node2Index}.connectedLinks(j));
+                                 end
+                             end
+                          end
+                      elseif obj.Nodes{node2Index}.occupancy == 'B'
+                          obj.Links{i}.occupancy = 'B';
+                          if obj.Nodes{node1Index}.occupancy == 'A'
+                              obj.Nodes{node1Index}.occupancy = 'B';
+                              for j=1:obj.Nodes{node1Index}.connectionNumber
+                                 if obj.Nodes{node1Index}.connectedLinks(j)~=i
+                                     Pc_threshold_n(obj.Nodes{node1Index}.connectedLinks(j),1)= Pc_threshold(obj.Nodes{node1Index}.connectedLinks(j));
+                                 end
+                             end
+                          end
+                      end
                  end
-                 Pc_threshold_n(throat_list(index))=0;
+%                  if obj.Links{throat_list(end)}.occupancy == 'A' 
+%                      obj.Links{throat_list(index)}.occupancy = 'B';                     
+%                      node1Index = obj.Links{throat_list(end)}.pore1Index;
+%                      node2Index = obj.Links{throat_list(end)}.pore2Index;
+%                      % if the link is connected to inlet (index of node 1 is -1 which does not exist) 
+%                      if obj.Links{throat_list(end)}.isInlet
+%                          if obj.Nodes{node2Index}.occupancy == 'A' && obj.Nodes{node2Index}.thresholdPressure <= Pc
+%                              obj.Nodes{node_index}.occupancy = 'B';
+%                               Pc_threshold_n(obj.Nodes{node_index}.connectedLinks)= Pc_threshold(obj.Nodes{node_index}.connectedLinks);                             
+%                              new = new + obj.Nodes{node_index}.connectionNumber;
+%                          end 
+%                      elseif ~obj.Links{throat_list(index)}.isInlet && ~obj.Links{throat_list(index)}.isOutlet
+%                          if obj.Nodes{node1Index}.occupancy == 'A' && obj.Nodes{node1Index}.thresholdPressure <= Pc
+%                              obj.Nodes{node1Index}.occupancy = 'B';                                 
+%                              Pc_threshold_n(obj.Nodes{node1Index}.connectedLinks)= Pc_threshold(obj.Nodes{node1Index}.connectedLinks);                         
+%                              new = new + obj.Nodes{node1Index}.connectionNumber;
+%                          end
+%                          if obj.Nodes{node2Index}.occupancy == 'A' && obj.Nodes{node2Index}.thresholdPressure <= Pc
+%                              obj.Nodes{node2Index}.occupancy = 'B';
+%                              Pc_threshold_n(obj.Nodes{node2Index}.connectedLinks)= Pc_threshold(obj.Nodes{node2Index}.connectedLinks);
+%                              new = new + obj.Nodes{node2Index}.connectionNumber;
+%                          end
+%                      end   
+%                  end
+%                  Pc_threshold_n(throat_list(index))=0;
              end
              
              % Updating element saturations and conductances
@@ -409,17 +481,8 @@ classdef Network < handle & Fluids
              obj.Pc_drain_curve(t,1) = Pc;               
              
              %% Relative Permeability Calculation
-             % [kr_oil(t,1),kr_water(t,1)] = k_rel(1,0);            
+             % [kr_oil(t,1),kr_water(t,1)] = k_rel(1,0);         
              
-                
-             % Pc Step Calculation 
-             if  obj.Sw_drain(t,1) > 0.9 
-                 Pc = Pc + 0.1*Pc_interval;
-             else
-                 Pc = Pc + Pc_interval;                 
-             end
-% Pc = Pc + 10;
-             t = t + 1; 
              end             
              fprintf('simTimes is: %f \n', t);         
              plot(obj.Sw_drain,obj.Pc_drain_curve,'--r')
