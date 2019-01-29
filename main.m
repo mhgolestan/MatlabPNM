@@ -2,18 +2,22 @@
 clear
 % clearing the current window
 clc
+
+import quasiStatic.*
+
+
 % Getting the working directory
 currentFoldet = pwd;
 
 networkFileName = 'C1';
-networkFileFullPath = strcat(currentFoldet, '\Input\NetworkDataFile\' , networkFileName);
+% networkFileFullPath = strcat(currentFoldet, '\Input\NetworkDataFile\' , networkFileName);
 
 
 % Pressure difference
 inletPressure = 1;
 outletPressure = 0;
 
-network = Network(networkFileFullPath);
+network = Network(networkFileName);
 network.calculatePorosity();
 fprintf('Porosity of the model is: %3.5f \n', network.Porosity);
 
