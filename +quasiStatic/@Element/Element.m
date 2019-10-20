@@ -1,4 +1,4 @@
-classdef Element<Fluids
+classdef Element<quasiStatic.Fluids
     %UNTITLED Summary of this class goes here
     %   Detailed explanation goes here
     
@@ -13,116 +13,66 @@ classdef Element<Fluids
         isOutlet
         
         % Calculated properties
-        conductance %Element conductance
-        geometry % geometrical shape of the element
+        
+        geometry % geometrical shape of the element 
         halfAngle1
         halfAngle2
         halfAngle3
         halfAngle4
-        area
-        waterCrossSectionArea
-        oilCrossSectionArea
-        gasCrossSectionArea 
-
+        area   
         
-        %It's better to define the phase conductances and the area of each
-        %fluid as a structure for this each element
-        waterConductance
-        oilConductance 
-        gasConductance
-        fluidConductances
-        fluidCrossSectionAreas
-
-        receedingContactAngle = 0;
-        advandingContactAngle
+        % Element conductance & area
+        conductanceSinglePhase                
         
         waterPressure
-        oilPressure
-        gasPressure
-        thresholdPressure
-        occupancy = 'A';
+        oilPressure      
         
-     
-    end
+        occupancy = 'A';  % Element filled by Water 
+         
+    end  
     
     methods
-        function ThresholdPressure = calculateThresholdPressurePistonLike (obj)
-         % calculateThresholdPressurePistonLike Summary of this method goes here
-         % Detailed explanation goes here  
-             if strcmp(obj.geometry , 'Circle')== 1
-                 ThresholdPressure = 2*obj.sig_ow *cos(obj.receedingContactAngle)/obj.radius;
-             else
-                 nominator = 0;
-                 halfAngles = [obj.halfAngle1, obj.halfAngle2,obj.halfAngle3, obj.halfAngle4];
-                 for jj = 1:4
-                     if ~isnan(halfAngles(jj)) && halfAngles(jj) < pi/2 - obj.receedingContactAngle
-                         E2 = cos(obj.receedingContactAngle + halfAngles(jj)) *...
-                             cos(obj.receedingContactAngle) / sin(halfAngles(jj));
-                         E0 = pi / 2 - obj.receedingContactAngle - halfAngles(jj);
-                         nominator = nominator +  (E2 - E0);
-                     end
-                 end
-                 ThresholdPressure = (obj.sig_ow / obj.radius)*...
-                     cos(obj.receedingContactAngle)*(1+sqrt(1 -(4*obj.shapeFactor*...
-                     nominator)/(cos(obj.receedingContactAngle)^2)));
-             end
-         end
-        
-         %% Conductance Calculation
-         function [waterCrossSectionArea, waterConductance] = calculateWaterConductance(obj, network, Pc)       
-             halfAngles = [obj.halfAngle1, obj.halfAngle2,obj.halfAngle3, obj.halfAngle4];
-             cornerArea = zeros(1,4);
-             cornerConductance = zeros(1,4);
-             %Raduis of Curvature
-             Rc = network.sig_ow / Pc;
-             for jj = 1:4
-                 if ~isnan(halfAngles(jj))
-                     % Based on Piri_2005: eq A4 & A5 
-                     if (halfAngles(jj) + obj.receedingContactAngle) == pi/2
-                          cornerArea(jj) = (Rc * cos(obj.receedingContactAngle + halfAngles(jj))/ sin (halfAngles(jj)))^2 *...
-                              sin(halfAngles(jj)) * cos(halfAngles(jj));
-                      else
-                          cornerArea(jj) = Rc ^2 * (cos(obj.receedingContactAngle)*...
-                              (cot(halfAngles(jj)) * cos(obj.receedingContactAngle) - sin(obj.receedingContactAngle))+ ...
-                              obj.receedingContactAngle + halfAngles(jj) - pi/2);
-                     end   
-                     % Based on Piri_2005: eq B(10 - 15)
-                     f = 1;
-                     F1 = pi/2 - halfAngles(jj) - obj.receedingContactAngle;
-                     F2 = cot(halfAngles(jj)) * cos(obj.receedingContactAngle) - sin(obj.receedingContactAngle); 
-                     F3 = (pi/2 - halfAngles(jj)) * tan(halfAngles(jj));
-                     
-                     if (obj.receedingContactAngle <= pi/2 - halfAngles(jj))                         
-                         cornerConductance(jj) = (cornerArea(jj)^2 * (1 - sin(halfAngles(jj)))^2 * ...
-                             (F2 * cos(obj.receedingContactAngle) - F1) * F3 ^ 2) / ...
-                             (12 * network.waterViscosity * ((sin(halfAngles(jj))) * ...
-                             (1 - F3) * (F2 + f * F1))^ 2);
-                     elseif (obj.receedingContactAngle > pi/2 - halfAngles(jj))
-                         cornerConductance(jj) = (cornerArea(jj)^2 * tan(halfAngles(jj))* ...
-                             (1 - sin(halfAngles(jj)))^2 * F3 ^ 2) / ...
-                             (12 * network.waterViscosity *(sin(halfAngles(jj)))^2*(1 - F3) * (1 + f * F3)^ 2);
-%                      else
-%                           cornerConductance(jj) = (A1^3 * (1 - sin(halfAngles(jj)))^2 * ...
-%                              tan(halfAngles(jj)) * F3 ^ 2) / ...
-%                               (12 * network.waterViscosity * (sin(halfAngles(jj)))^2 * ...
-%                               (1 - F3) * (1 + f1*F3 - (1- f2*F3) * sqrt(A2/cornerArea(jj)))^ 2);
-                     end
-                 end
-                 waterCrossSectionArea = sum(cornerArea);                 
-                 waterConductance = sum(cornerConductance);
-             end
-         end
-           
-         function [oilCrossSectionArea, oilConductance] = calculateOilConductance(obj, network)                             
-             oilCrossSectionArea = obj.area - obj.waterCrossSectionArea;
-             if strcmp(obj.geometry , 'Circle')== 1
-                 oilConductance = oilCrossSectionArea^2 * 0.5 * obj.shapeFactor /network.oilViscosity;
-             elseif strcmp(obj.geometry , 'Triangle')== 1
-                 oilConductance = oilCrossSectionArea^2 * 3  * obj.shapeFactor / network.oilViscosity/5;
-             elseif strcmp(obj.geometry , 'Square')== 1
-                 oilConductance = oilCrossSectionArea^2 *0.5623 * obj.area^2 * obj.shapeFactor /network.oilViscosity;
-             end              
-         end
+        function calculateElementsProperties(obj) 
+            
+            % Geometry and conductance specification of the elements is
+            % based of : Patzek, T. W., & Silin, D. B. (2001). Shape factor and hydraulic conductance in noncircular capillaries: I. One-phase creeping flow. Journal of Colloid and Interface Science. https://doi.org/10.1006/jcis.2000.7413
+            % For ducts with square cross-sections, all four half-angles are equal to /4? and G = 1/16 . Circular ducts have no corners and G =1/ 4? . For simplicity, all ducts with shape factors between those of equilateral triangle and square can be mapped onto squares, and those with shape factors above 1/16 onto circles.
+            % we'd better to insert star shapes later
+            if  obj.shapeFactor <= sqrt(3) / 36
+                obj.shapeFactor = max(obj.shapeFactor, 10^-7);
+                obj.geometry = 'Triangle';
+                betha2_min = atan((2 / sqrt(3)) * cos((acos(-12 * sqrt(3) * obj.shapeFactor)) / 3 + (4 * pi / 3)));
+                betha2_max = atan((2 / sqrt(3)) * cos((acos(-12 * sqrt(3) * obj.shapeFactor)) / 3 ));
+                % rand(0.25-0.75)
+                rand_1 = 0.5*(rand+0.5);
+                obj.halfAngle2 = betha2_min + rand_1 * (betha2_max - betha2_min);
+                obj.halfAngle1 = -0.5 * obj.halfAngle2 + 0.5 * asin((tan(obj.halfAngle2) + 4 * obj.shapeFactor) * sin(obj.halfAngle2) / (tan(obj.halfAngle2) - 4 * obj.shapeFactor));
+                obj.halfAngle3 = pi / 2 - obj.halfAngle1 - obj.halfAngle2;
+                obj.halfAngle4 = nan;
+                obj.area = obj.radius^2/4/obj.shapeFactor;                
+                obj.conductanceSinglePhase = 3 * obj.area^2 * obj.shapeFactor /obj.waterViscosity / 5;   
+            elseif obj.shapeFactor > sqrt(3) / 36 && obj.shapeFactor <= 1 / 16
+                obj.geometry = 'Square';
+                obj.halfAngle1 = pi / 4;
+                obj.halfAngle2 = pi / 4;
+                obj.halfAngle3 = pi / 4;
+                obj.halfAngle4 = pi / 4;
+                obj.area = 4*obj.radius^2;                
+                obj.conductanceSinglePhase = 0.5623 * obj.area^2 * obj.shapeFactor /obj.waterViscosity; 
+            elseif obj.shapeFactor > 1 / 16
+                obj.geometry = 'Circle';
+                obj.halfAngle1 = nan;
+                obj.halfAngle2 = nan;
+                obj.halfAngle3 = nan;
+                obj.halfAngle4 = nan;
+                obj.area = pi*obj.radius^2;                
+                obj.conductanceSinglePhase = 0.5 * obj.area^2 * obj.shapeFactor /obj.waterViscosity;  
+            end
+                if obj.volume == 0
+                    obj.volume = obj.area * obj.length;
+                end
+        end
+          
     end
 
 end

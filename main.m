@@ -5,36 +5,22 @@ clc
 
 import quasiStatic.*
 
-
 % Getting the working directory
 currentFoldet = pwd;
 
-networkFileName = 'C1';
-% networkFileFullPath = strcat(currentFoldet, '\Input\NetworkDataFile\' , networkFileName);
-
+networkFileName = 'CARB'; 
 
 % Pressure difference
 inletPressure = 1;
 outletPressure = 0;
 
+% Crearing an object of the network
 network = Network(networkFileName);
-network.calculatePorosity();
-fprintf('Porosity of the model is: %3.5f \n', network.Porosity);
 
-% network.pressureDistribution(1,0);
-% network.calculateAbsolutePermeability();
-% fprintf('%3.5f \n', network.absolutePermeability)
-% network.calculateRelativePermeability();
-network.PrimaryDrainage();
-
-press = zeros(network.numberOfNodes,1);
-x = zeros(network.numberOfNodes,1);
-index = zeros(network.numberOfNodes,1);
-for ii = 1:network.numberOfNodes
-    if network.Nodes{ii}.y_coordinate == network.Nodes{1}.y_coordinate
-    press(ii) = network.Nodes{ii}.waterPressure;
-    index(ii) = network.Nodes{ii}.index;
-    x(ii) = network.Nodes{ii}.x_coordinate;
-    end
-end
-plot(x, press, '*')
+% Calculating network propeties by running single-phase flow
+tic
+network.calculateNetworkProperties(inletPressure, outletPressure);
+network.networkInfo();
+network.visualization('Initializing', 0);
+toc  
+ 
