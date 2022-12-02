@@ -12,6 +12,9 @@ classdef Link < quasiStatic.Element
         linkLength  % only the length of the link
          
         nodeLinkSystemConductanceSinglePhase  
+        nodeLinkSystemConductance_W
+        nodeLinkSystemConductance_O
+        cylindricalConductanceSinglePhase 
     end
     
     methods

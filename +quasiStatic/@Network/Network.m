@@ -3,6 +3,7 @@ classdef Network < handle & quasiStatic.Fluids
     %   This class contain nodes and links of the network
     
     properties
+        name
         Nodes
         Links
         xDimension
@@ -21,31 +22,50 @@ classdef Network < handle & quasiStatic.Fluids
         numOfTriangularPores
         maxCoordinationNumber
         averageCoordinationNumber
+        stdCoordinationNumber
         numOfIsolatedElements
         
         PSD
         ThSD
+        ThSD_length
         Porosity
         poreVolume
         networkVolume
         absolutePermeability
         absolutePermeability_m2
         
+        inletPressure
+        outletPressure
         totalFlowRate
         velocity
         capillaryNumber
+        pecletNumber
         
+        
+        deltaS_input = 0.1;
+        Pc_interval = 1;
+        max_Pc
+        min_Pc
+        Pc_drain_max        
+        DrainageData   
+        waterSaturation 
+        ImbibitionData   
+        sequence % control of filling in Imbibition
+        thresholdPressure % control of thresholdPressure in Imbibition
+                     
+        BreakThroughCurve_singlePhase % Reactive 
     end
     
     methods
         %% Cunstructor function
-        function obj = Network(fileName)
+        function obj = Network(fileName, inletPressure, outletPressure)
             %Network Construct an instance of this class
             %   Detailed explanation goes here
-            
+            obj.outletPressure = outletPressure;
+            obj.inletPressure = inletPressure;
             % current path
             currentFoldet = pwd;
-            networkFileFullPath = strcat(currentFoldet, '\datasets\NetworkDataFile\' , fileName);
+            networkFileFullPath = strcat(currentFoldet, '/datasets/NetworkDataFile/' , fileName);
             
             
             % Opening the files
@@ -109,12 +129,36 @@ classdef Network < handle & quasiStatic.Fluids
         
         %% Single Phase
         % Network Properties calculation
+        networkRewriting(obj, fileName)
+        networkRewriting_addProps(obj, fileName)
+        networkStochastic(obj, fileName)
         calculateNetworkProperties(obj, inletPressure, outletPressure)
-        % Printing Network Properties
-        networkInfo(obj)
+        
+        % Printing Network Properties 
+        networkInfoPlots(obj,Plots)
+        
         % Paraview visualization
-        visualization(obj, process, ii)
-    
+        visualization(obj, networkFileName, process, ii)         
+        networkRewritingWithImagenaryPores(obj, fileName) 
+        
+        % Reactive
+        % Diffusion
+        calculateReactiveTransport_SinglePhaseDiffusion(obj, inletPressure, outletPressure, soluteConcentration, poreVolumeSimulation, poreVolumeInjected)
+        % Desorption
+        calculateReactiveTransport_SinglePhaseDesorption(obj, inletPressure, outletPressure, soluteConcentration, poreVolumeSimulation, poreVolumeInjected)
+                
+        %% Two Phase 
+        % Primary Drainage
+        PrimaryDrainage(obj, inletPressure, outletPressure) 
+        PrimaryDrainage_20191207(obj, inletPressure, outletPressure) 
+        PrimaryDrainage_20191207new(obj, inletPressure, outletPressure) 
+        
+        % Secondary Imbibition
+        SecondaryImbibition(obj, inletPressure, outletPressure) 
+        
+        %% Network generator
+        % Generate sub-network from a big network
+        subnetworkGenerator(obj, networkFileName); 
     end
 end
 

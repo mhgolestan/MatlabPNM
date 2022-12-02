@@ -9,6 +9,8 @@ classdef Node < quasiStatic.Element
         connectionNumber
         connectedNodes
         connectedLinks  
+        imbThresholdPressure_PoreBodyFilling = nan;  
+        newID
     end
     
     methods
@@ -46,6 +48,15 @@ classdef Node < quasiStatic.Element
             obj.shapeFactor = shapeFactor;
             obj.clayVolume = clayVolume;   
         end    
+        %% PoreBodyFilling 
+        calculateThresholdPressurePoreBodyFilling (obj,network)% Blunt2
+        calculateThresholdPressurePoreBodyFilling_Blunt1 (obj,network) % Blunt1
+        calculateThresholdPressurePoreBodyFilling_Oren1 (obj,network)% Oren1
+        calculateThresholdPressurePoreBodyFilling_Oren2 (obj,network)% Oren2
+        calculateThresholdPressurePoreBodyFilling_Piri (obj,network)% Piri
+        calculateThresholdPressurePoreBodyFilling_Patzek (obj,network)% Patzek
+        calculateThresholdPressurePoreBodyFilling_Valvatne (obj,network)% Valvatne
     end
+    
 end
 
