@@ -11,8 +11,8 @@ else
     end
     element.imbThresholdPressure_LayerCollapse = nan(1, 4); hingingAngles = zeros(1,4);   b_i = zeros(nc , 1);
     for i = 1:nc
-        b_i(i) = element.sig_ow / Pc_max_drainage * cos(hingingAngles(i) + halfAngles(i))/sin(halfAngles(i));
-        element.imbThresholdPressure_LayerCollapse(i) = element.sig_ow / b_i(i)*...
+        b_i(i) = element.IFT_NperMeter / Pc_max_drainage * cos(hingingAngles(i) + halfAngles(i))/sin(halfAngles(i));
+        element.imbThresholdPressure_LayerCollapse(i) = element.IFT_NperMeter / b_i(i)*...
             (cot(halfAngles(i))+ (2*sin(halfAngles(i))*cos(element.advancingContactAngle))- ...
             sqrt((sin(element.advancingContactAngle))^2-4*sin(halfAngles(i))^2-4*sin(halfAngles(i))*cos(element.advancingContactAngle)));
     end

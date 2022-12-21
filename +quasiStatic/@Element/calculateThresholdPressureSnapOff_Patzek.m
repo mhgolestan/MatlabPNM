@@ -13,12 +13,12 @@ else
             rso = zeros(1,nc);
             for edge = 1:nc
                 
-                rso1 = element.sig_ow / element.imbThresholdPressure_PistonLike;
+                rso1 = element.IFT_NperMeter / element.imbThresholdPressure_PistonLike;
                 rso2 = rso1*2;
                 
                 while abs(rso1 - rso2) > 10^-8
                     rso1 = rso2;
-                    hingeAngle_ii = acos((element.sig_ow / rso1)*...
+                    hingeAngle_ii = acos((element.IFT_NperMeter / rso1)*...
                         cos(element.recedingContactAngle + halfAngles(1))/Pc_max_drainage) - halfAngles(1);
                     if hingeAngle_ii <= element.advancingContactAngle
                         E1_i = cos(element.recedingContactAngle + halfAngles(1))/sin(halfAngles(1));
@@ -26,7 +26,7 @@ else
                         E1_i = cos(element.advancingContactAngle + halfAngles(1))/sin(halfAngles(1));
                     end
                     
-                    hingeAngle_jj = acos((element.sig_ow / rso1)*...
+                    hingeAngle_jj = acos((element.IFT_NperMeter / rso1)*...
                         cos(element.recedingContactAngle + halfAngles(2)) / Pc_max_drainage) - halfAngles(2);
                     if hingeAngle_jj <= element.advancingContactAngle
                         E1_j = cos(element.recedingContactAngle + halfAngles(2))/sin(halfAngles(2));
@@ -34,7 +34,7 @@ else
                         E1_j = cos(element.advancingContactAngle + halfAngles(2))/sin(halfAngles(2));
                     end
                     
-                    hingeAngle_kk = acos((element.sig_ow / rso1)*...
+                    hingeAngle_kk = acos((element.IFT_NperMeter / rso1)*...
                         cos(element.recedingContactAngle + halfAngles(3)) / Pc_max_drainage) - halfAngles(3);
                     if hingeAngle_kk <= element.advancingContactAngle
                         E1_k = cos(element.recedingContactAngle + halfAngles(3))/sin(halfAngles(3));
@@ -49,7 +49,7 @@ else
                     rso = min(r2,rso31);
                 end
             end
-            element.imbThresholdPressure_SnapOff = element.sig_ow / rso;
+            element.imbThresholdPressure_SnapOff = element.IFT_NperMeter / rso;
             
             % Forced imbibition part
         elseif element.advancingContactAngle == maxAdvAngle
@@ -64,7 +64,7 @@ else
         % elemnt is square : Piri
         if element.advancingContactAngle <= pi/4
             %eq C34
-            element.imbThresholdPressure_SnapOff = element.sig_ow / element.radius * ...
+            element.imbThresholdPressure_SnapOff = element.IFT_NperMeter / element.radius * ...
                 (cot(pi/4)*cos(element.advancingContactAngle)-sin(element.advancingContactAngle));
         elseif element.advancingContactAngle > pi/4 && element.advancingContactAngle <= 3*pi/4
             element.imbThresholdPressure_SnapOff = Pc_max_drainage*cos(element.advancingContactAngle + pi/4)/...

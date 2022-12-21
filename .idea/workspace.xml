@@ -3,9 +3,9 @@
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
-  <component name="CMakePresetLoader"><![CDATA[{
-  "useNewFormat": true
-}]]></component>
+  <component name="CMakePresetLoader">{
+  &quot;useNewFormat&quot;: true
+}</component>
   <component name="CMakeSettings">
     <configurations>
       <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
@@ -14,105 +14,28 @@
   <component name="ChangeListManager">
     <list default="true" id="268f3bdb-ed95-4c4e-a367-33f575eed47f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/+quasiStatic/@Network/Network.m" beforeDir="false" afterPath="$PROJECT_DIR$/+quasiStatic/@Network/Network.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/+quasiStatic/@Network/PrimaryDrainage.m" beforeDir="false" afterPath="$PROJECT_DIR$/+quasiStatic/@Network/PrimaryDrainage.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/+quasiStatic/@Network/PrimaryDrainage_20191207.m" beforeDir="false" afterPath="$PROJECT_DIR$/+quasiStatic/@Network/PrimaryDrainage_20191207.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/+quasiStatic/@Network/PrimaryDrainage_20191207new.m" beforeDir="false" afterPath="$PROJECT_DIR$/+quasiStatic/@Network/PrimaryDrainage_20191207new.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/+quasiStatic/@Network/drainagePlotInfo.m" beforeDir="false" afterPath="$PROJECT_DIR$/+quasiStatic/@Network/drainagePlotInfo.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/+quasiStatic/@Network/imbibition_drainagePlotInfo.m" beforeDir="false" afterPath="$PROJECT_DIR$/+quasiStatic/@Network/imbibition_drainagePlotInfo.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/+quasiStatic/@Network/primaryDrainage.m" beforeDir="false" afterPath="$PROJECT_DIR$/+quasiStatic/@Network/primaryDrainage.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/+quasiStatic/@Network/primaryDrainage_20191207.m" beforeDir="false" afterPath="$PROJECT_DIR$/+quasiStatic/@Network/primaryDrainage_20191207.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/+quasiStatic/@Network/primaryDrainage_20191207new.m" beforeDir="false" afterPath="$PROJECT_DIR$/+quasiStatic/@Network/primaryDrainage_20191207new.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/+quasiStatic/@Network/secondaryImbibition.m" beforeDir="false" afterPath="$PROJECT_DIR$/+quasiStatic/@Network/secondaryImbibition.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/+quasiStatic/@Network/secondaryImbibition_20191207.m" beforeDir="false" afterPath="$PROJECT_DIR$/+quasiStatic/@Network/secondaryImbibition_20191207.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/+quasiStatic/@Network/secondaryImbibition_20191207new.m" beforeDir="false" afterPath="$PROJECT_DIR$/+quasiStatic/@Network/secondaryImbibition_20191207new.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/+quasiStatic/@Network/calculateAbsolutePermeability.m" beforeDir="false" afterPath="$PROJECT_DIR$/+quasiStatic/@Network/calculateAbsolutePermeability.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/+quasiStatic/@Network/calculateNetworkProperties.m" beforeDir="false" afterPath="$PROJECT_DIR$/+quasiStatic/@Network/calculateNetworkProperties.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/+quasiStatic/@Network/networkStochastic.m" beforeDir="false" afterPath="$PROJECT_DIR$/+quasiStatic/@Network/networkStochastic.m" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/+quasiStatic/@Network/visualization.m" beforeDir="false" afterPath="$PROJECT_DIR$/+quasiStatic/@Network/visualization.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/+quasiStatic/@Network/visualizationWithImagenaryPores.m" beforeDir="false" afterPath="$PROJECT_DIR$/+quasiStatic/@Network/visualizationWithImagenaryPores.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_Initializing000.vtk" beforeDir="false" afterPath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_Initializing000.vtk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_PD001.vtk" beforeDir="false" afterPath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_PD001.vtk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_PD002.vtk" beforeDir="false" afterPath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_PD002.vtk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_PD003.vtk" beforeDir="false" afterPath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_PD003.vtk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_PD004.vtk" beforeDir="false" afterPath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_PD004.vtk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_PD005.vtk" beforeDir="false" afterPath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_PD005.vtk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_PD006.vtk" beforeDir="false" afterPath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_PD006.vtk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_PD007.vtk" beforeDir="false" afterPath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_PD007.vtk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_PD008.vtk" beforeDir="false" afterPath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_PD008.vtk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_PD009.vtk" beforeDir="false" afterPath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_PD009.vtk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_PD010.vtk" beforeDir="false" afterPath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_PD010.vtk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_PD011.vtk" beforeDir="false" afterPath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_PD011.vtk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_PD012.vtk" beforeDir="false" afterPath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_PD012.vtk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_PD013.vtk" beforeDir="false" afterPath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_PD013.vtk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_PD014.vtk" beforeDir="false" afterPath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_PD014.vtk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_PD015.vtk" beforeDir="false" afterPath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_PD015.vtk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_PD016.vtk" beforeDir="false" afterPath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_PD016.vtk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_PD017.vtk" beforeDir="false" afterPath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_PD017.vtk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_PD018.vtk" beforeDir="false" afterPath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_PD018.vtk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_PD019.vtk" beforeDir="false" afterPath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_PD019.vtk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_PD020.vtk" beforeDir="false" afterPath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_PD020.vtk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_PD021.vtk" beforeDir="false" afterPath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_PD021.vtk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_PD022.vtk" beforeDir="false" afterPath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_PD022.vtk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_PD023.vtk" beforeDir="false" afterPath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_PD023.vtk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_PD024.vtk" beforeDir="false" afterPath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_PD024.vtk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_PD025.vtk" beforeDir="false" afterPath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_PD025.vtk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_PD026.vtk" beforeDir="false" afterPath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_PD026.vtk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_PD027.vtk" beforeDir="false" afterPath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_PD027.vtk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_SI001.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_SI002.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_SI003.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_SI004.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_SI005.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_SI006.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_SI007.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_SI008.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_SI009.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_SI010.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_SI011.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_SI012.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_SI013.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_SI014.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_WithImaginaryPoresnew_Initializing000.vtk" beforeDir="false" afterPath="$PROJECT_DIR$/Results/simple_9_homogen_highAR_WithImaginaryPoresnew_Initializing000.vtk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_lowAR_Initializing000.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_lowAR_PD001.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_lowAR_PD002.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_lowAR_PD003.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_lowAR_PD004.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_lowAR_PD005.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_lowAR_PD006.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_lowAR_PD007.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_lowAR_PD008.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_lowAR_PD009.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_lowAR_PD010.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_lowAR_PD011.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_lowAR_PD012.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_lowAR_PD013.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_lowAR_PD014.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_lowAR_PD015.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_lowAR_PD016.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_lowAR_PD017.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_lowAR_PD018.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_lowAR_PD019.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_lowAR_PD020.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_lowAR_PD021.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_lowAR_PD022.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_lowAR_PD023.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_lowAR_PD024.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_lowAR_PD025.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_lowAR_PD026.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_lowAR_SI001.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_lowAR_SI002.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_lowAR_SI003.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_lowAR_SI004.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_lowAR_SI005.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_lowAR_SI006.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_lowAR_SI007.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_lowAR_SI008.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_lowAR_SI009.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_lowAR_SI010.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_lowAR_SI011.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_lowAR_SI012.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_lowAR_SI013.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_lowAR_SI014.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_lowAR_SI015.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_lowAR_SI016.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_lowAR_SI017.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_lowAR_SI018.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_lowAR_SI019.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_lowAR_SI020.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_lowAR_WithImaginaryPoresnew_Initializing000.vtk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/simple_9_homogen_lowAR_stocastic.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/+quasiStatic/@Node/Node.m" beforeDir="false" afterPath="$PROJECT_DIR$/+quasiStatic/@Node/Node.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/+quasiStatic/@Node/calculateThresholdPressurePoreBodyFilling.m" beforeDir="false" afterPath="$PROJECT_DIR$/+quasiStatic/@Node/calculateThresholdPressurePoreBodyFilling.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/+quasiStatic/@Node/calculateThresholdPressurePoreBodyFilling_Blunt1.m" beforeDir="false" afterPath="$PROJECT_DIR$/+quasiStatic/@Node/calculateThresholdPressurePoreBodyFilling_Blunt1.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/+quasiStatic/@Node/calculateThresholdPressurePoreBodyFilling_Oren1.m" beforeDir="false" afterPath="$PROJECT_DIR$/+quasiStatic/@Node/calculateThresholdPressurePoreBodyFilling_Oren1.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/+quasiStatic/@Node/calculateThresholdPressurePoreBodyFilling_Oren2.m" beforeDir="false" afterPath="$PROJECT_DIR$/+quasiStatic/@Node/calculateThresholdPressurePoreBodyFilling_Oren2.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/+quasiStatic/@Node/calculateThresholdPressurePoreBodyFilling_Patzek.m" beforeDir="false" afterPath="$PROJECT_DIR$/+quasiStatic/@Node/calculateThresholdPressurePoreBodyFilling_Patzek.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/+quasiStatic/@Node/calculateThresholdPressurePoreBodyFilling_Piri.m" beforeDir="false" afterPath="$PROJECT_DIR$/+quasiStatic/@Node/calculateThresholdPressurePoreBodyFilling_Piri.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/+quasiStatic/@Node/calculateThresholdPressurePoreBodyFilling_Valvatne.m" beforeDir="false" afterPath="$PROJECT_DIR$/+quasiStatic/@Node/calculateThresholdPressurePoreBodyFilling_Valvatne.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Network.m" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/simple_9_homogen_highAR_Initializing000.vtk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/simple_9_homogen_highAR_stocastic.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main.m" beforeDir="false" afterPath="$PROJECT_DIR$/main.m" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -142,12 +65,12 @@
     "WebServerToolWindowFactoryState": "false",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "last_opened_file_path": "/home/leilahashemi/ownCloud/Documents/PNM_QuasiStatic/archive/archive_MatlabPNM/MatlabPNM/Results/simple_9_homogen_highAR_WithImaginaryPoresnew_Initializing000.vtk",
+    "last_opened_file_path": "/home/leilahashemi/ownCloud/Documents/PNM_Dynamic/DuMux/DUMUX_Leila",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "two.files.diff.last.used.file": "/home/leilahashemi/ownCloud/Documents/PNM_QuasiStatic/archive/archive_MatlabPNM/MatlabPNM/Results/simple_9_homogen_highAR_WithImaginaryPoresnew_Initializing000.vtk",
+    "two.files.diff.last.used.file": "/home/leilahashemi/ownCloud/Documents/PNM_QuasiStatic/archive/archive_MatlabPNM/MatlabPNM/results/simple_9_homogen_highAR_WithImaginaryPoresnew_Initializing000.vtk",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -160,6 +83,7 @@
       <option name="presentableId" value="Default" />
       <updated>1669903114620</updated>
       <workItem from="1669903115761" duration="2183000" />
+      <workItem from="1670404769209" duration="41000" />
     </task>
     <servers />
   </component>

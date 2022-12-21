@@ -2,8 +2,8 @@ function calculateThresholdPressurePistonLike_Imbibition(element, Pc_max_drainag
 
 if strcmp(element.geometry , 'Circle')== 1
     % Based on Al-Futaisi&Patzek_2001: eqs 2-5 & Piri_2005: eq C4
-    element.imbThresholdPressure_PistonLike = 2*element.sig_ow *cos(element.advancingContactAngle)/element.radius;
-    element.oilLayerExist(1,:) = nan;
+    element.imbThresholdPressure_PistonLike = 2*element.IFT_NperMeter *cos(element.advancingContactAngle)/element.radius;
+    element.nonWettingLayerExist(1,:) = nan;
 else
     % Based on  Al-Futaisi&Patzek_2001: eqs 2-4 & 6-10
     halfAngles = [element.halfAngle1, element.halfAngle2,element.halfAngle3, element.halfAngle4];
@@ -20,7 +20,7 @@ else
         end
     end
     a = (-4 * element.shapeFactor * nominator)/...
-        ((element.radius * Pc_max_drainage / element.sig_ow) - cos(element.recedingContactAngle)+...
+        ((element.radius * Pc_max_drainage / element.IFT_NperMeter) - cos(element.recedingContactAngle)+...
         12 * element.shapeFactor * sin(element.recedingContactAngle));
     if a >1
         a = 1;
@@ -32,7 +32,7 @@ else
     if element.advancingContactAngle <= maxAdvAngle % Spontaneous imbibition
         
         maxIteration = 5000;it = 0;
-        rpd = element.sig_ow / Pc_max_drainage;
+        rpd = element.IFT_NperMeter / Pc_max_drainage;
         NR = 0;
         E0 = zeros(nc,1); E1 = zeros(nc,1); alpha = zeros(nc,1);hingingAngles = zeros(1,nc);b_i=zeros(1,nc);
         rp1 =rpd*2;
@@ -157,9 +157,9 @@ else
                 fprintf('err %f\n',err);
             end
         end
-        element.imbThresholdPressure_PistonLike = element.sig_ow / R_n;
+        element.imbThresholdPressure_PistonLike = element.IFT_NperMeter / R_n;
     elseif element.advancingContactAngle > maxAdvAngle && element.advancingContactAngle < pi/2 + max(halfAngles) % Forced imbibition
-        element.imbThresholdPressure_PistonLike = 2 * element.sig_ow * cos(element.advancingContactAngle) / element.radius;
+        element.imbThresholdPressure_PistonLike = 2 * element.IFT_NperMeter * cos(element.advancingContactAngle) / element.radius;
     elseif element.advancingContactAngle >= pi/2 + max(halfAngles) % Forced imbibition
         element.imbThresholdPressure_PistonLike = -calculateThresholdPressurePistonLike_drainage(element, (pi - element.advancingContactAngle));
     end

@@ -1,28 +1,23 @@
-function calculateThresholdPressurePoreBodyFilling (element,network)
-% Based on Blunt2
-element.oilLayerExist(1,:) = nan;
-W =15000;
-attachedThroats = element.connectedLinks;
-
-z = 0;% number of oil filled attached throats
-for i = 1:element.connectionNumber
-    if network.Links{attachedThroats(i)}.occupancy == 'B'
-        z=z+1;
-    end
+function calculateThresholdPressurePoreBodyFilling(element,network)
+switch (network.typeOfPoreBodyFillingAlgorithm)
+    case 'Blunt2'    
+        calculateThresholdPressurePoreBodyFilling_Blunt2 (element,network)% Blunt2
+    case 'Blunt1'
+        calculateThresholdPressurePoreBodyFilling_Blunt1 (element,network) % Blunt1
+    case 'Oren1'
+        calculateThresholdPressurePoreBodyFilling_Oren1 (element,network)% Oren1
+    case 'Oren2'
+        calculateThresholdPressurePoreBodyFilling_Oren2 (element,network)% Oren2
+    case 'Piri'
+        calculateThresholdPressurePoreBodyFilling_Piri (element,network)% Piri
+    case 'Patzek'
+        calculateThresholdPressurePoreBodyFilling_Patzek (element,network)% Patzek  
+    case 'Valvatne'
+        calculateThresholdPressurePoreBodyFilling_Valvatne (element,network)% Valvatne  
+    otherwise 
+        warning ('typeOfPoreBodyFillingAlgorithm does not match with the defined algorithms, therefore Valvatne is used as a default algorithm'); 
+        calculateThresholdPressurePoreBodyFilling_Valvatne(element,network) % Valvatne 
 end
-
-if z == 0
-    element.imbThresholdPressure_PoreBodyFilling = nan;
-elseif z == 1
-%              element.calculateThresholdPressurePistonLike_Imbibition(network.Pc_drain_max);
-    element.imbThresholdPressure_PoreBodyFilling = element.imbThresholdPressure_PistonLike;
-else
-    nominator = 0;
-    for ii = 1:z
-        randNumber = rand;
-        nominator = nominator + randNumber * W;
-    end
-    element.imbThresholdPressure_PoreBodyFilling = 2*element.sig_ow * cos(element.advancingContactAngle)/element.radius - element.sig_ow *nominator;
-end
+    
 
 end

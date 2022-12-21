@@ -27,36 +27,37 @@ classdef Element < quasiStatic.Fluids
         crossSectionShapePore
                 
         conductanceSinglePhase=0 % Element conductance & area             
-        waterConductance
-        oilConductance        
-        waterCrossSectionArea 
-        oilCrossSectionArea  
-        waterSaturation
-        oilSaturation
+        wettingPhaseConductance
+        nonWettingConductance  
         
-        waterPressure
-        oilPressure      
+        wettingPhaseCrossSectionArea 
+        nonWettingCrossSectionArea  
+        
+        wettingPhaseSaturation
+        nonWettingSaturation
+        
+        wettingPhasePressure
+        nonWettingPressure      
         
         occupancy = 'A';  % Element filled by Water         
-        waterCornerExist = nan(1,4); % Water resides in the corner of element       
-        oilLayerExist = nan(1,4);        
+        wettingPhaseCornerExist = nan(1,4); % Water resides in the corner of element       
+        nonWettingLayerExist = nan(1,4);        
         b = zeros(1,4); % Apex distance
+        
         drainThresholdPressure_PistonLike % Capillary Threshold Pressure in Drainage
-        recedingContactAngle = 0*pi/18; % Receding Contact Angle
+        
+        recedingContactAngle = 0;        
+        advancingContactAngle = 0; 
         
         hingeAngles 
-        advancingContactAngle = 0*pi/18;
-        isInvaded = false; % check for invasion in Imbibition
+        isInvaded = false; % check for invasion in Imbibition 
         control % control Saturation in Imbibition
         % Capillary Threshold Pressure in Imbibition
         imbPressureTrapped = nan;
         imbThresholdPressure_SnapOff = nan;
         imbThresholdPressure_PistonLike = nan;
         imbThresholdPressure_LayerCollapse = nan(1,4);
-        
-        % reactive
-        concentration = 0;
-        adsorbedConcentration = 0;
+         
     end  
     
     methods
@@ -87,8 +88,8 @@ classdef Element < quasiStatic.Fluids
         calculateThresholdPressureLayerCollapse(obj, Pc_max_drainage)% Zolfaghari
         calculateThresholdPressureLayerCollapse_Piri(obj, Pc_max_drainage)% Piri
         
-        % oilLayer existance check  threshold pressure  
-        oilLayerExistance(obj)
+        % nonWettingLayer existance check  threshold pressure  
+        nonWettingLayerExistance(obj)
         
         % Conductance & cross-section area of each phase
         calculateConductance_Imbibition(obj, network, Pc)

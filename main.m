@@ -1,58 +1,60 @@
 % Clearing the workspace
-clear
+clear 
+close all
 % clearing the current window
 clc
 
-%% Flow
+%% Flow module
 import quasiStatic.*
 
-networkFileName = 'simple_9_homogen_highAR'; % for flow simulation 
-
-% Pressure difference
-inletPressure = 1;
-outletPressure = 0;
-
 % Crearing an object of the network
-network = Network(networkFileName, inletPressure, outletPressure);
-network.deltaS_input = 0.1;
-network.Pc_interval = 10;%/network.deltaS_input; %20;
-network.max_Pc = 10000;
-network.min_Pc = -10000;
+networkFileName = 'simple_9_homogen_lowAR';  
+network = Network(networkFileName);
 
-%% Calculating network propeties by running single-phase flow
-tic
+%% Calculating network propeties and running single-phase flow
+
 network.name = networkFileName;
-network.calculateNetworkProperties(inletPressure, outletPressure);
-network.networkStochastic(networkFileName); 
-% network.networkInfoPlots('True');  
-network.visualization(networkFileName,'Initializing',0) 
-toc   
 
+network.visualization = true; % Paraview visualization, single phase pressure distribution if calculatePressureDistribution!
+network.calculateSinglePhasePressureDistribution = true;
+if network.calculateSinglePhasePressureDistribution
+    network.inletPressure_Pa  = 1;
+    network.outletPressure_Pa = 0;
+end 
+
+network.IO.output_networkStochasticAndPlotInfo_singlePhaseFlow(network); 
+  
 %% Two-phase flow simulations
 
+network.max_Pc_Pa = 10000;
+network.min_Pc_Pa = -10000;
+network.deltaS_input = 0.1;
+network.NoOfPc_interval = 10;
+network.randSeed = 0;
+
+% typeOfPoreBodyFillingAlgorithm = {Blunt1, Blunt2, Oren1, Oren2, Patzek, Valvatne (uses absolute permeability)}
+network.typeOfPoreBodyFillingAlgorithm = 'Oren1'; 
+
+network.calculateRelativePermeability = true;
+network.recedingContactAngle = 0*pi/180;
+network.advancingContactAngle = 0*pi/180;
+network.flowVisualization = true;
+
+if network.calculateRelativePermeability
+    network.inletPressure_Pa  = 1;
+    network.outletPressure_Pa = 0;    
+end
+
 % Calculationg capillary pressure & relative permeability during Primary Drainage
-tic
-fprintf('=============================== Drainage Start =====================================\n'); 
-% network.PrimaryDrainage(inletPressure, outletPressure);  
-network.PrimaryDrainage_20191207(inletPressure, outletPressure);  
-% network.PrimaryDrainage_20191207new(inletPressure, outletPressure);   
-toc 
+fprintf('================================ Drainage Start =========================================\n'); 
+% network.primaryDrainage();  
+network.primaryDrainage_20191207();      
+% network.IO.output_networkStochasticAndPlotInfo_twoPhaseFlow(network); 
 
 % Calculationg capillary pressure & relative permeability during Secondary Imbibition
-tic
-fprintf('=============================== Imbibition Start =====================================\n'); 
-network.SecondaryImbibition(inletPressure, outletPressure); 
-toc 
-
-%% Reactive
-% Calculationg solute transport_Diffusion in singlePhase flow
-% tic
-% soluteConcentration = 1;
-% poreVolumeInjected = network.poreVolume*1; 
-% poreVolumeSimulation = network.poreVolume*2;
-% fprintf('=============================== Diffusion Start =====================================\n'); 
-% network.calculateReactiveTransport_SinglePhaseDiffusion(inletPressure, outletPressure, soluteConcentration, poreVolumeSimulation, poreVolumeInjected);
-% fprintf('=============================== Desorption Start =====================================\n'); 
-% network.calculateReactiveTransport_SinglePhaseDesorption(inletPressure, outletPressure, soluteConcentration, poreVolumeSimulation, poreVolumeInjected);
-% toc
+fprintf('================================ Imbibition Start =======================================\n'); 
+% network.secondaryImbibition(); 
+network.secondaryImbibition_20191207(); 
+% network.secondaryImbibition_20191207new(); 
+network.IO.output_networkStochasticAndPlotInfo_twoPhaseFlow(network); 
  

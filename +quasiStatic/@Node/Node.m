@@ -49,13 +49,14 @@ classdef Node < quasiStatic.Element
             obj.clayVolume = clayVolume;   
         end    
         %% PoreBodyFilling 
-        calculateThresholdPressurePoreBodyFilling (obj,network)% Blunt2
+        calculateThresholdPressurePoreBodyFilling_Blunt2 (obj,network)% Blunt2
         calculateThresholdPressurePoreBodyFilling_Blunt1 (obj,network) % Blunt1
         calculateThresholdPressurePoreBodyFilling_Oren1 (obj,network)% Oren1
         calculateThresholdPressurePoreBodyFilling_Oren2 (obj,network)% Oren2
         calculateThresholdPressurePoreBodyFilling_Piri (obj,network)% Piri
         calculateThresholdPressurePoreBodyFilling_Patzek (obj,network)% Patzek
         calculateThresholdPressurePoreBodyFilling_Valvatne (obj,network)% Valvatne
+        calculateThresholdPressurePoreBodyFilling (obj,network)% Valvatne
     end
     
 end

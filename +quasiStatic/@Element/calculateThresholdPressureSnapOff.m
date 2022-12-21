@@ -3,7 +3,7 @@ function calculateThresholdPressureSnapOff(element,Pc_max_drainage)
 if strcmp(element.geometry , 'Circle')== 1
     element.imbThresholdPressure_SnapOff = nan;
 else
-    r_dr = element.sig_ow / Pc_max_drainage;
+    r_dr = element.IFT_NperMeter / Pc_max_drainage;
     % Based on  Zolfaghari_2014: eqs 4.31
     if strcmp(element.geometry , 'Triangle')== 1
         A = zeros(1,7);
@@ -28,7 +28,7 @@ else
                     cos(element.recedingContactAngle + element.halfAngle3);
             end
             max_A = max(A);
-            element.imbThresholdPressure_SnapOff = element.sig_ow /element.radius * max_A;
+            element.imbThresholdPressure_SnapOff = element.IFT_NperMeter /element.radius * max_A;
         else  % Forced imbibition part
             element.imbThresholdPressure_SnapOff = Pc_max_drainage * cos(element.advancingContactAngle + element.halfAngle1) / ...
                 cos(element.recedingContactAngle + element.halfAngle1);
@@ -36,7 +36,7 @@ else
         
     else % elemnt is square
         if element.advancingContactAngle <= pi/4 %Spontaneous Imbibition
-            element.imbThresholdPressure_SnapOff = element.sig_ow / element.radius * ...
+            element.imbThresholdPressure_SnapOff = element.IFT_NperMeter / element.radius * ...
                 (cos(element.advancingContactAngle)-sin(element.advancingContactAngle));
             % Forced imbibition part
         elseif element.advancingContactAngle > pi/4 && element.advancingContactAngle <= 3*pi/4

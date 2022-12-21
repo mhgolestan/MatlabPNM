@@ -1,0 +1,145 @@
+
+===============================Network Information============================
+Network:                                            simple_9_homogen_lowAR 
+Dimension of network in x-axis (m):                 3.450000e-04 
+Dimension of network in y-axis (m):                 3.450000e-04 
+Dimension of network in z-axis (m):                 1.150000e-04 
+Number of pores:                                    9 
+Number of throats:                                  18 
+Net porosity:                                       5.419015e-01 
+Absolute permeability (mD):                         3.006604e+04 
+Absolute permeability (m2):                         2.967518E-11 
+================================================================================
+Average connection number:                          3.333333e+00 
+StandardDeviation connection number:                5.000000e-01 
+Number of connections to inlet:                     3 
+Number of connections to outlet:                    3 
+Number of physically isolated elements:             0 
+Number of triangular shaped elements:               27 
+Number of square shaped elements:                   0 
+Number of circular shaped elements:                 0 
+Number of triangular shaped pores:                  9 
+Number of square shaped pores:                      0 
+Number of circular shaped pores:                    0 
+Number of triangular shaped pores:                  18 
+Number of square shaped pores:                      0 
+Number of circular shaped pores:                    0 
+MeanPoreInscribedRadius (m):                        3.250000e-05 
+StandardDeviationPoreInscribedRadius (m):           0 
+MeanThroatInscribedRadius (m):                      2.500000e-05 
+StandardDeviationThroatInscribedRadius (m):         6.972718e-21 
+MinThroatInscribedLength (m):                       1.150000e-04 
+MeanThroatInscribedLength (m):                      1.150000e-04 
+StandardDeviationThroatInscribedLength (m):         2.789087e-20 
+================================================================================
+
+=================================Input Data ====================================
+Receding contact angle (o):                         0 
+Advancing contact angle (o):                        0 
+Rand seed for imbibition filling:                   0 
+Minimum capillary pressure (Pa):                    -10000 
+Maximum capillary pressure (Pa):                    10000 
+Delta saturation for output visualization:          1.000000e-01 
+Number of intervals for capillary pressure:         10 
+Type of Pore Body Filling Algorithm:                Oren1 
+Is relative permeability calculated?                True 
+wettingPhase viscosity (Pa.S):                      1.050000e-03 
+nonWettingPhase viscosity (Pa.S):                   1.390000e-03 
+IFT (N/m):                                          7.250000e-02 
+Flow visualization?                                 True 
+=================================================================================
+
+==================================== Primary Drainage =====================================
+
+Sw:1.00000 	 Pc(Pa): 0.00000 	 No. of invasion:  0 	 K_rw:1.00000 	 K_rnw:0.00000 
+Sw:1.00000 	 Pc(Pa):515.22861 	 No. of invasion:  0 	 K_rw:1.00000 	 K_rnw:0.00000 
+Sw:1.00000 	 Pc(Pa):1030.45721 	 No. of invasion:  0 	 K_rw:1.00000 	 K_rnw:0.00000 
+Sw:1.00000 	 Pc(Pa):1545.68582 	 No. of invasion:  0 	 K_rw:1.00000 	 K_rnw:0.00000 
+Sw:1.00000 	 Pc(Pa):2060.91442 	 No. of invasion:  0 	 K_rw:1.00000 	 K_rnw:0.00000 
+Sw:1.00000 	 Pc(Pa):2576.14303 	 No. of invasion:  0 	 K_rw:1.00000 	 K_rnw:0.00000 
+Sw:1.00000 	 Pc(Pa):3091.37164 	 No. of invasion:  0 	 K_rw:1.00000 	 K_rnw:0.00000 
+Sw:1.00000 	 Pc(Pa):3606.60024 	 No. of invasion:  0 	 K_rw:1.00000 	 K_rnw:0.00000 
+Sw:1.00000 	 Pc(Pa):4121.82885 	 No. of invasion:  0 	 K_rw:1.00000 	 K_rnw:0.00000 
+Sw:1.00000 	 Pc(Pa):4637.05745 	 No. of invasion:  0 	 K_rw:1.00000 	 K_rnw:0.00000 
+Sw:1.00000 	 Pc(Pa):5152.28606 	 No. of invasion:  4 	 K_rw:1.00000 	 K_rnw:0.00000 
+Sw:0.84359 	 Pc(Pa):5152.28606 	 No. of invasion:  8 	 K_rw:1.00000 	 K_rnw:0.00000 
+Sw:0.48374 	 Pc(Pa):5152.28606 	 No. of invasion: 13 	 K_rw:1.00000 	 K_rnw:0.00000 
+Sw:0.34265 	 Pc(Pa):5152.28606 	 No. of invasion: 18 	 K_rw:1.00000 	 K_rnw:0.00000 
+Sw:0.20157 	 Pc(Pa):5152.28606 	 No. of invasion: 22 	 K_rw:1.00000 	 K_rnw:0.00000 
+Sw:0.20157 	 Pc(Pa):5152.28606 	 No. of invasion: 24 	 K_rw:1.00000 	 K_rnw:1.00000 
+Sw:0.10752 	 Pc(Pa):5152.28606 	 No. of invasion: 27 	 K_rw:1.00000 	 K_rnw:1.00000 
+Sw:0.08886 	 Pc(Pa):5667.51466 	 No. of invasion: 27 	 K_rw:1.00000 	 K_rnw:1.00000 
+Sw:0.07466 	 Pc(Pa):6182.74327 	 No. of invasion: 27 	 K_rw:1.00000 	 K_rnw:1.00000 
+Sw:0.06362 	 Pc(Pa):6697.97188 	 No. of invasion: 27 	 K_rw:0.72638 	 K_rnw:1.00000 
+Sw:0.05486 	 Pc(Pa):7213.20048 	 No. of invasion: 27 	 K_rw:0.54004 	 K_rnw:1.00000 
+Sw:0.04779 	 Pc(Pa):7728.42909 	 No. of invasion: 27 	 K_rw:0.40980 	 K_rnw:1.00000 
+Sw:0.04200 	 Pc(Pa):8243.65769 	 No. of invasion: 27 	 K_rw:0.31656 	 K_rnw:1.00000 
+Sw:0.03720 	 Pc(Pa):8758.88630 	 No. of invasion: 27 	 K_rw:0.24840 	 K_rnw:1.00000 
+Sw:0.03318 	 Pc(Pa):9274.11491 	 No. of invasion: 27 	 K_rw:0.19763 	 K_rnw:1.00000 
+Sw:0.02978 	 Pc(Pa):9789.34351 	 No. of invasion: 27 	 K_rw:0.15919 	 K_rnw:1.00000 
+
+========================= Network state at the end of Primary Drainage ====================
+
+Maximum capillary pressure reached (Pa):   9789.34351 
+Residual water saturation:                 0.02978 
+Number of invaded elements:                27 
+Number of uninvaded elements:              0 
+===========================================================================================
+
+=================================== Secondary Imbibition ==================================
+
+Sw:0.02854 	 Pc(Pa):10000.00000 	 No. of invasion:  0 	 K_rw:0.00000 	 K_rnw:1.00000 
+Sw:0.02854 	 Pc(Pa):10000.00000 	 No. of invasion:  0 	 K_rw:0.00000 	 K_rnw:1.00000 
+Sw:0.02854 	 Pc(Pa):10000.00000 	 No. of invasion:  0 	 K_rw:0.00000 	 K_rnw:1.00000 
+Sw:0.02854 	 Pc(Pa):10000.00000 	 No. of invasion:  0 	 K_rw:0.00000 	 K_rnw:1.00000 
+Sw:0.02854 	 Pc(Pa):10000.00000 	 No. of invasion:  0 	 K_rw:0.00000 	 K_rnw:1.00000 
+Sw:0.10752 	 Pc(Pa):5152.28606 	 No. of invasion:  1 	 K_rw:0.00000 	 K_rnw:1.00000 
+Sw:0.10752 	 Pc(Pa):5152.28606 	 No. of invasion:  2 	 K_rw:0.00000 	 K_rnw:1.00000 
+Sw:0.10752 	 Pc(Pa):5152.28606 	 No. of invasion:  3 	 K_rw:0.00000 	 K_rnw:0.00000 
+Sw:0.10752 	 Pc(Pa):5152.28606 	 No. of invasion:  3 	 K_rw:0.00000 	 K_rnw:0.00000 
+Sw:0.10752 	 Pc(Pa):5152.28606 	 No. of invasion:  3 	 K_rw:0.00000 	 K_rnw:0.00000 
+Sw:0.24733 	 Pc(Pa):3397.05378 	 No. of invasion:  4 	 K_rw:0.00000 	 K_rnw:0.00000 
+Sw:0.28556 	 Pc(Pa):3397.05378 	 No. of invasion:  5 	 K_rw:1.00000 	 K_rnw:0.00000 
+Sw:0.32380 	 Pc(Pa):3397.05378 	 No. of invasion:  6 	 K_rw:1.00000 	 K_rnw:0.00000 
+Sw:0.32380 	 Pc(Pa):3397.05378 	 No. of invasion:  7 	 K_rw:1.00000 	 K_rnw:0.00000 
+Sw:0.36203 	 Pc(Pa):3397.05378 	 No. of invasion:  8 	 K_rw:1.00000 	 K_rnw:0.00000 
+Sw:0.40026 	 Pc(Pa):3397.05378 	 No. of invasion:  9 	 K_rw:1.00000 	 K_rnw:0.00000 
+Sw:0.40026 	 Pc(Pa):3397.05378 	 No. of invasion: 10 	 K_rw:1.00000 	 K_rnw:0.00000 
+Sw:0.43850 	 Pc(Pa):3397.05378 	 No. of invasion: 11 	 K_rw:1.00000 	 K_rnw:0.00000 
+Sw:0.53645 	 Pc(Pa):3397.05378 	 No. of invasion: 12 	 K_rw:1.00000 	 K_rnw:0.00000 
+Sw:0.57469 	 Pc(Pa):3397.05378 	 No. of invasion: 13 	 K_rw:1.00000 	 K_rnw:0.00000 
+Sw:0.61292 	 Pc(Pa):3397.05378 	 No. of invasion: 14 	 K_rw:1.00000 	 K_rnw:0.00000 
+Sw:0.71087 	 Pc(Pa):3397.05378 	 No. of invasion: 15 	 K_rw:1.00000 	 K_rnw:0.00000 
+Sw:0.74911 	 Pc(Pa):3397.05378 	 No. of invasion: 16 	 K_rw:1.00000 	 K_rnw:0.00000 
+Sw:0.78734 	 Pc(Pa):3397.05378 	 No. of invasion: 17 	 K_rw:1.00000 	 K_rnw:0.00000 
+Sw:0.88530 	 Pc(Pa):3397.05378 	 No. of invasion: 18 	 K_rw:1.00000 	 K_rnw:0.00000 
+Sw:0.92353 	 Pc(Pa):3397.05378 	 No. of invasion: 19 	 K_rw:1.00000 	 K_rnw:0.00000 
+Sw:0.92353 	 Pc(Pa):3397.05378 	 No. of invasion: 20 	 K_rw:1.00000 	 K_rnw:0.00000 
+Sw:0.96177 	 Pc(Pa):3397.05378 	 No. of invasion: 21 	 K_rw:1.00000 	 K_rnw:0.00000 
+Sw:0.96177 	 Pc(Pa):3397.05378 	 No. of invasion: 22 	 K_rw:1.00000 	 K_rnw:0.00000 
+Sw:0.96177 	 Pc(Pa):3397.05378 	 No. of invasion: 23 	 K_rw:1.00000 	 K_rnw:0.00000 
+Sw:1.00000 	 Pc(Pa):3397.05378 	 No. of invasion: 24 	 K_rw:1.00000 	 K_rnw:0.00000 
+Sw:1.00000 	 Pc(Pa):3397.05378 	 No. of invasion: 25 	 K_rw:1.00000 	 K_rnw:0.00000 
+Sw:1.00000 	 Pc(Pa):3397.05378 	 No. of invasion: 26 	 K_rw:1.00000 	 K_rnw:0.00000 
+Sw:1.00000 	 Pc(Pa):3397.05378 	 No. of invasion: 27 	 K_rw:1.00000 	 K_rnw:0.00000 
+
+=============== Network state at the end of Secondary Imbibition ==========================
+
+Minimum capillary pressure reached (Pa):   3397.05378 
+Maximum water saturation:                  1.00000 
+Number of invaded elements:                27 
+Number of uninvaded elements:              0 
+
+ ============== Pore Filling process at the end of Secondary Imbibition ===================
+
+Number of uninvaded pores:                 0 
+Number of Snap off in pores:               0 
+Number of Pore body filling in pores:      9 
+
+ ============== Throat Filling process at the end of Secondary Imbibition =================
+
+Number of uninvaded throats:               0 
+Number of Snap off in throats:             0 
+Number of Piston like in throats:          18 
+===========================================================================================
+

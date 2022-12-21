@@ -1,7 +1,7 @@
-function [krw, kro] = calculateRelativePermeability_Imbibition (network, outletPressure, LinkL, LinkL_W, cluster_A_nums, cluster_A)
+function [krw, kro] = calculateRelativePermeability_Imbibition (network, outletPressure_Pa, LinkL, LinkL_W, cluster_A_nums, cluster_A)
 
-waterFlowRate = 0;
-oilFlowRate = 0;
+wettingPhaseFlowRate = 0;
+nonWettingFlowRate = 0;
 %search through all the links
 for ii = 1:network.numberOfLinks
     
@@ -9,26 +9,26 @@ for ii = 1:network.numberOfLinks
     if network.Links{ii}.isOutlet
         % calculate the flow rate of the fluid
         if any(LinkL_W(ii) == cluster_A(:))
-            waterFlowRate = waterFlowRate + ...
+            wettingPhaseFlowRate = wettingPhaseFlowRate + ...
                 abs(network.Links{ii}.nodeLinkSystemConductance_W * ...
-                (outletPressure - network.Nodes{node1Index}.waterPressure));
+                (outletPressure_Pa - network.Nodes{node1Index}.wettingPhasePressure));
         end
         % calculate the flow rate of the fluid
         if any(LinkL(ii) == cluster_A_nums(:))
-            oilFlowRate = oilFlowRate + ...
+            nonWettingFlowRate = nonWettingFlowRate + ...
                 abs(network.Links{ii}.nodeLinkSystemConductance_O * ...
-                (outletPressure - network.Nodes{node1Index}.oilPressure));
+                (outletPressure_Pa - network.Nodes{node1Index}.nonWettingPressure));
         end
     end
     
 end
-krw = waterFlowRate/network.totalFlowRate;
+krw = wettingPhaseFlowRate/network.totalFlowRate_m3PerS;
 if krw > 1
     krw = 1;
 elseif krw <0
     krw = 0;
 end
-kro = oilFlowRate * network.oilViscosity/network.totalFlowRate / network.waterViscosity;
+kro = nonWettingFlowRate * network.nonWettingPhase_Viscosity_PaS/network.totalFlowRate_m3PerS / network.wettingPhase_Viscosity_PaS;
 if kro > 1
     kro = 1;
 elseif kro <0

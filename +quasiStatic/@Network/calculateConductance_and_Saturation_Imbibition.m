@@ -1,8 +1,8 @@
 function calculateConductance_and_Saturation_Imbibition(network, Pc, NodeL, NodeL_W, LinkL, LinkL_W, cluster_A_nums, cluster_A, cluster_B_nums, cluster_B)  
             Pc = abs(Pc);     
-            waterVolume = 0;   
+            wettingPhaseVolume = 0;   
             vol = 0; 
-            waterArea = zeros(network.numberOfLinks,4);
+            wettingPhaseArea = zeros(network.numberOfLinks,4);
             
             for i = 1:network.numberOfNodes 
                     if (any(NodeL(i) == cluster_A_nums(:)) ||  any(NodeL(i) == cluster_B_nums(:)))
@@ -19,10 +19,10 @@ function calculateConductance_and_Saturation_Imbibition(network, Pc, NodeL, Node
                         end
                     end           
                 % Water Saturation Calculation
-                waterArea(i,1)=network.Nodes{i}.area;
-                waterArea(i,2)=network.Nodes{i}.waterCrossSectionArea;
+                wettingPhaseArea(i,1)=network.Nodes{i}.area;
+                wettingPhaseArea(i,2)=network.Nodes{i}.wettingPhaseCrossSectionArea;
                 if ~network.Nodes{i}.isInlet && ~network.Nodes{i}.isOutlet 
-                    waterVolume = waterVolume + (network.Nodes{i}.waterCrossSectionArea )...
+                    wettingPhaseVolume = wettingPhaseVolume + (network.Nodes{i}.wettingPhaseCrossSectionArea )...
                         / network.Nodes{i}.area *network.Nodes{i}.volume + network.Nodes{i}.clayVolume;                
                     vol = vol + network.Nodes{i}.volume + network.Nodes{i}.clayVolume;
                 end
@@ -42,13 +42,13 @@ function calculateConductance_and_Saturation_Imbibition(network, Pc, NodeL, Node
                         end
                     end 
                 % Water Saturation Calculation                
-                waterArea(i,3)=network.Links{i}.area;
-                waterArea(i,4)=network.Links{i}.waterCrossSectionArea;
+                wettingPhaseArea(i,3)=network.Links{i}.area;
+                wettingPhaseArea(i,4)=network.Links{i}.wettingPhaseCrossSectionArea;
                 if ~network.Links{i}.isInlet && ~network.Links{i}.isOutlet 
-                     waterVolume = waterVolume + (network.Links{i}.waterCrossSectionArea )...
+                     wettingPhaseVolume = wettingPhaseVolume + (network.Links{i}.wettingPhaseCrossSectionArea )...
                          / network.Links{i}.area * network.Links{i}.volume + network.Links{i}.clayVolume;
                      vol = vol + network.Links{i}.volume + network.Links{i}.clayVolume;
                 end
             end             
-            network.waterSaturation = waterVolume / vol;     
+            network.wettingPhaseSaturation = wettingPhaseVolume / vol;     
         end

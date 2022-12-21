@@ -13,9 +13,9 @@ function calculateThresholdPressureLayerCollapse_Piri(element, Pc_max_drainage)
               for i = 1:nc 
                   hingingAngles(i) = element.advancingContactAngle;
                   h = hingingAngles(i)/2;
-                  b_i(i) = element.sig_ow / element.imbThresholdPressure_PistonLike * cos(hingingAngles(i) + halfAngles(i))/sin(halfAngles(i));
+                  b_i(i) = element.IFT_NperMeter / element.imbThresholdPressure_PistonLike * cos(hingingAngles(i) + halfAngles(i))/sin(halfAngles(i));
                   while abs(hingingAngles(i) - h) > 10 ^ -5  
-                      Pc_n = element.sig_ow *...
+                      Pc_n = element.IFT_NperMeter *...
                           (3*(sin(halfAngles(i)))^2+ 4*sin(halfAngles(i))*cos(hingingAngles(i))+(cos(hingingAngles(i)))^2)/...
                           (b_i(i)*(cos(halfAngles(i))*sin(halfAngles(i))*(2*sin(halfAngles(i))+cos(hingingAngles(i)))+...
                           (sin(halfAngles(i)))^2 * ...
@@ -23,7 +23,7 @@ function calculateThresholdPressureLayerCollapse_Piri(element, Pc_max_drainage)
                       h = hingingAngles(i);
                       hingingAngles(i) = acos((Pc_n/Pc_max_drainage)*cos(element.recedingContactAngle + halfAngles(i))) - halfAngles(i);  
                       hingingAngles(i) = min (hingingAngles(i), element.advancingContactAngle);
-                      b_i(i) = element.sig_ow / Pc_n * cos(hingingAngles(i) + halfAngles(i))/sin(halfAngles(i));
+                      b_i(i) = element.IFT_NperMeter / Pc_n * cos(hingingAngles(i) + halfAngles(i))/sin(halfAngles(i));
                   end
                   element.imbThresholdPressure_LayerCollapse(i) = Pc_n;
               end
