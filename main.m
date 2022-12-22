@@ -8,7 +8,7 @@ clc
 import quasiStatic.*
 
 % Crearing an object of the network
-networkFileName = 'simple_9_homogen_lowAR';  
+networkFileName = 'simple_9_homogen_highAR';  
 network = Network(networkFileName);
 
 %% Calculating network propeties and running single-phase flow
@@ -33,7 +33,7 @@ network.NoOfPc_interval = 10;
 network.randSeed = 0;
 
 % typeOfPoreBodyFillingAlgorithm = {Blunt1, Blunt2, Oren1, Oren2, Patzek, Valvatne (uses absolute permeability)}
-network.typeOfPoreBodyFillingAlgorithm = 'Oren1'; 
+network.typeOfPoreBodyFillingAlgorithm = 'Valvatne'; 
 
 network.calculateRelativePermeability = true;
 network.recedingContactAngle = 0*pi/180;
