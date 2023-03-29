@@ -4,6 +4,11 @@ MatlabPNM is an open-source software developed for flow simulation at micro-scal
 
 <img src="./results/PNM.gif">
 
+
+## Quasi-static package graph
+
+<img src="./results/quasi.png">
+
 ## Quasi-static drainage flowchart
 
 <img src="./results/drain.png">
