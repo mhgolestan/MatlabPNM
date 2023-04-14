@@ -1,0 +1,18 @@
+name: Matlab Workflow
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  run_simulator:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Matlab
+        uses: matlab-actions/setup-matlab@v2
+        with:
+          release: R2021a  
+
+      - uses: matlab-actions/run-tests@v0  
