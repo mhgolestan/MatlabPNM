@@ -70,15 +70,15 @@ Sw:0.15715 	 Pc(Pa):5152.28606 	 No. of invasion: 16 	 K_rw:1.00000 	 K_rnw:0.00
 Sw:0.12109 	 Pc(Pa):5152.28606 	 No. of invasion: 19 	 K_rw:1.00000 	 K_rnw:0.00000 
 Sw:0.08504 	 Pc(Pa):5152.28606 	 No. of invasion: 22 	 K_rw:1.00000 	 K_rnw:0.00000 
 Sw:0.04899 	 Pc(Pa):5152.28606 	 No. of invasion: 27 	 K_rw:1.00000 	 K_rnw:1.00000 
-Sw:0.04049 	 Pc(Pa):5667.51466 	 No. of invasion: 27 	 K_rw:0.81281 	 K_rnw:1.00000 
-Sw:0.03402 	 Pc(Pa):6182.74327 	 No. of invasion: 27 	 K_rw:0.57390 	 K_rnw:1.00000 
-Sw:0.02899 	 Pc(Pa):6697.97188 	 No. of invasion: 27 	 K_rw:0.41666 	 K_rnw:1.00000 
-Sw:0.02499 	 Pc(Pa):7213.20048 	 No. of invasion: 27 	 K_rw:0.30978 	 K_rnw:1.00000 
-Sw:0.02177 	 Pc(Pa):7728.42909 	 No. of invasion: 27 	 K_rw:0.23507 	 K_rnw:1.00000 
-Sw:0.01914 	 Pc(Pa):8243.65769 	 No. of invasion: 27 	 K_rw:0.18159 	 K_rnw:1.00000 
-Sw:0.01695 	 Pc(Pa):8758.88630 	 No. of invasion: 27 	 K_rw:0.14248 	 K_rnw:1.00000 
-Sw:0.01512 	 Pc(Pa):9274.11491 	 No. of invasion: 27 	 K_rw:0.11336 	 K_rnw:1.00000 
-Sw:0.01357 	 Pc(Pa):9789.34351 	 No. of invasion: 27 	 K_rw:0.09132 	 K_rnw:1.00000 
+Sw:0.04049 	 Pc(Pa):5667.51466 	 No. of invasion: 27 	 K_rw:0.81298 	 K_rnw:1.00000 
+Sw:0.03402 	 Pc(Pa):6182.74327 	 No. of invasion: 27 	 K_rw:0.57402 	 K_rnw:1.00000 
+Sw:0.02899 	 Pc(Pa):6697.97188 	 No. of invasion: 27 	 K_rw:0.41675 	 K_rnw:1.00000 
+Sw:0.02499 	 Pc(Pa):7213.20048 	 No. of invasion: 27 	 K_rw:0.30984 	 K_rnw:1.00000 
+Sw:0.02177 	 Pc(Pa):7728.42909 	 No. of invasion: 27 	 K_rw:0.23512 	 K_rnw:1.00000 
+Sw:0.01914 	 Pc(Pa):8243.65769 	 No. of invasion: 27 	 K_rw:0.18162 	 K_rnw:1.00000 
+Sw:0.01695 	 Pc(Pa):8758.88630 	 No. of invasion: 27 	 K_rw:0.14251 	 K_rnw:1.00000 
+Sw:0.01512 	 Pc(Pa):9274.11491 	 No. of invasion: 27 	 K_rw:0.11339 	 K_rnw:1.00000 
+Sw:0.01357 	 Pc(Pa):9789.34351 	 No. of invasion: 27 	 K_rw:0.09133 	 K_rnw:1.00000 
 
 ========================= Network state at the end of Primary Drainage ====================
 
