@@ -13,6 +13,6 @@ jobs:
       - name: Set up Matlab
         uses: matlab-actions/setup-matlab@v2
         with:
-          release: R2021a 
-      - name: Run Matlab Simulator
-        run: matlab -batch "main.m"
+          release: R2021a  
+
+      - uses: matlab-actions/run-tests@v0  
