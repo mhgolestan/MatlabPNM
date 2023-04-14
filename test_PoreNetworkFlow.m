@@ -21,8 +21,6 @@ classdef test_PoreNetworkFlow < matlab.unittest.TestCase
             testCase.network.outletPressure_Pa = 0;
             testCase.network.calculateRelativePermeability = false;
             
-            testCase.network.primaryDrainage_20191207();
-            
             % Verify that pressure distribution is calculated
             testCase.verifyTrue(testCase.network.calculateSinglePhasePressureDistribution);
             % Verify that inlet and outlet pressures are set correctly
