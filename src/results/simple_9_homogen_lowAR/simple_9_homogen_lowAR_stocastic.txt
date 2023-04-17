@@ -1,0 +1,41 @@
+
+===============================Network Information=====================================
+Network:                                            simple_9_homogen_lowAR 
+Dimension of network in x-axis (m):                 3.450000e-04 
+Dimension of network in y-axis (m):                 3.450000e-04 
+Dimension of network in z-axis (m):                 1.150000e-04 
+Number of pores:                                    9 
+Number of throats:                                  18 
+Net porosity:                                       5.419015e-01 
+Absolute permeability (mD):                         3.006604e+04 
+Absolute permeability (m2):                         2.967518E-11 
+======================================================================================
+Average connection number:                          3.333333e+00 
+StandardDeviation connection number:                5.000000e-01 
+Number of connections to inlet:                     3 
+Number of connections to outlet:                    3 
+Number of physically isolated elements:             0 
+Number of triangular shaped elements:               27 
+Number of square shaped elements:                   0 
+Number of circular shaped elements:                 0 
+Number of triangular shaped pores:                  9 
+Number of square shaped pores:                      0 
+Number of circular shaped pores:                    0 
+Number of triangular shaped pores:                  18 
+Number of square shaped pores:                      0 
+Number of circular shaped pores:                    0 
+MeanPoreInscribedRadius (m):                        3.250000e-05 
+StandardDeviationPoreInscribedRadius (m):           0 
+MeanThroatInscribedRadius (m):                      2.500000e-05 
+StandardDeviationThroatInscribedRadius (m):         6.972718e-21 
+MinThroatInscribedLength (m):                       1.150000e-04 
+MeanThroatInscribedLength (m):                      1.150000e-04 
+StandardDeviationThroatInscribedLength (m):         2.789087e-20 
+======================================================================================
+
+
+=================================Input Data ====================================
+Is Single Phase Pressure Distribution calculated?   True 
+Flow visualization?                                 True 
+=================================================================================
+

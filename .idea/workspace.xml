@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="CMakePresetLoader">{
+  &quot;useNewFormat&quot;: true
+}</component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="268f3bdb-ed95-4c4e-a367-33f575eed47f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/+quasiStatic/@Network/Network.m" beforeDir="false" afterPath="$PROJECT_DIR$/+quasiStatic/@Network/Network.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/+quasiStatic/@Network/primaryDrainage.m" beforeDir="false" afterPath="$PROJECT_DIR$/+quasiStatic/@Network/primaryDrainage.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/+quasiStatic/@Network/primaryDrainage_20191207.m" beforeDir="false" afterPath="$PROJECT_DIR$/+quasiStatic/@Network/primaryDrainage_20191207.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/+quasiStatic/@Network/primaryDrainage_20191207new.m" beforeDir="false" afterPath="$PROJECT_DIR$/+quasiStatic/@Network/primaryDrainage_20191207new.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/+quasiStatic/@Network/secondaryImbibition.m" beforeDir="false" afterPath="$PROJECT_DIR$/+quasiStatic/@Network/secondaryImbibition.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/+quasiStatic/@Network/secondaryImbibition_20191207.m" beforeDir="false" afterPath="$PROJECT_DIR$/+quasiStatic/@Network/secondaryImbibition_20191207.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/+quasiStatic/@Network/secondaryImbibition_20191207new.m" beforeDir="false" afterPath="$PROJECT_DIR$/+quasiStatic/@Network/secondaryImbibition_20191207new.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/+quasiStatic/@Network/calculateAbsolutePermeability.m" beforeDir="false" afterPath="$PROJECT_DIR$/+quasiStatic/@Network/calculateAbsolutePermeability.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/+quasiStatic/@Network/calculateNetworkProperties.m" beforeDir="false" afterPath="$PROJECT_DIR$/+quasiStatic/@Network/calculateNetworkProperties.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/+quasiStatic/@Network/networkStochastic.m" beforeDir="false" afterPath="$PROJECT_DIR$/+quasiStatic/@Network/networkStochastic.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/+quasiStatic/@Network/visualization.m" beforeDir="false" afterPath="$PROJECT_DIR$/+quasiStatic/@Network/visualization.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/+quasiStatic/@Node/Node.m" beforeDir="false" afterPath="$PROJECT_DIR$/+quasiStatic/@Node/Node.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/+quasiStatic/@Node/calculateThresholdPressurePoreBodyFilling.m" beforeDir="false" afterPath="$PROJECT_DIR$/+quasiStatic/@Node/calculateThresholdPressurePoreBodyFilling.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/+quasiStatic/@Node/calculateThresholdPressurePoreBodyFilling_Blunt1.m" beforeDir="false" afterPath="$PROJECT_DIR$/+quasiStatic/@Node/calculateThresholdPressurePoreBodyFilling_Blunt1.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/+quasiStatic/@Node/calculateThresholdPressurePoreBodyFilling_Oren1.m" beforeDir="false" afterPath="$PROJECT_DIR$/+quasiStatic/@Node/calculateThresholdPressurePoreBodyFilling_Oren1.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/+quasiStatic/@Node/calculateThresholdPressurePoreBodyFilling_Oren2.m" beforeDir="false" afterPath="$PROJECT_DIR$/+quasiStatic/@Node/calculateThresholdPressurePoreBodyFilling_Oren2.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/+quasiStatic/@Node/calculateThresholdPressurePoreBodyFilling_Patzek.m" beforeDir="false" afterPath="$PROJECT_DIR$/+quasiStatic/@Node/calculateThresholdPressurePoreBodyFilling_Patzek.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/+quasiStatic/@Node/calculateThresholdPressurePoreBodyFilling_Piri.m" beforeDir="false" afterPath="$PROJECT_DIR$/+quasiStatic/@Node/calculateThresholdPressurePoreBodyFilling_Piri.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/+quasiStatic/@Node/calculateThresholdPressurePoreBodyFilling_Valvatne.m" beforeDir="false" afterPath="$PROJECT_DIR$/+quasiStatic/@Node/calculateThresholdPressurePoreBodyFilling_Valvatne.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Network.m" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/simple_9_homogen_highAR_Initializing000.vtk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/simple_9_homogen_highAR_stocastic.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.m" beforeDir="false" afterPath="$PROJECT_DIR$/main.m" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2IJcR4KePAX54HEcFvgjrUHUkUi" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "last_opened_file_path": "/home/leilahashemi/ownCloud/Documents/PNM_Dynamic/DuMux/DUMUX_Leila",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "two.files.diff.last.used.file": "/home/leilahashemi/ownCloud/Documents/PNM_QuasiStatic/archive/archive_MatlabPNM/MatlabPNM/results/simple_9_homogen_highAR_WithImaginaryPoresnew_Initializing000.vtk",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="268f3bdb-ed95-4c4e-a367-33f575eed47f" name="Changes" comment="" />
+      <created>1669903114620</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1669903114620</updated>
+      <workItem from="1669903115761" duration="2183000" />
+      <workItem from="1670404769209" duration="41000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
