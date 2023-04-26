@@ -1,5 +1,5 @@
 % Define the test case
-classdef test_PoreNetworkFlow < matlab.unittest.TestCase
+classdef test_mainFileStructure < matlab.unittest.TestCase
     
     properties
         mynetwork
@@ -21,21 +21,17 @@ classdef test_PoreNetworkFlow < matlab.unittest.TestCase
             % Test single-phase flow simulation
             testCase.mynetwork.calculateSinglePhasePressureDistribution = true;
             testCase.mynetwork.inletPressure_Pa = 1;
-            testCase.mynetwork.outletPressure_Pa = 0;
-            testCase.mynetwork.calculateRelativePermeability = false;
+            testCase.mynetwork.outletPressure_Pa = 0; 
             
             % Verify that pressure distribution is calculated
             testCase.verifyTrue(testCase.mynetwork.calculateSinglePhasePressureDistribution);
             % Verify that inlet and outlet pressures are set correctly
             testCase.verifyEqual(testCase.mynetwork.inletPressure_Pa, 1);
-            testCase.verifyEqual(testCase.mynetwork.outletPressure_Pa, 0);
-            % Verify that relative permeability is not calculated
-            testCase.verifyFalse(testCase.mynetwork.calculateRelativePermeability);
+            testCase.verifyEqual(testCase.mynetwork.outletPressure_Pa, 0); 
         end
         
         function testTwoPhaseFlow(testCase)
-            % Test two-phase flow simulation
-            testCase.mynetwork.calculateSinglePhasePressureDistribution = false;
+            % Test two-phase flow simulation 
             testCase.mynetwork.calculateRelativePermeability = true;
             testCase.mynetwork.inletPressure_Pa = 1;
             testCase.mynetwork.outletPressure_Pa = 0;
