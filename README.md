@@ -31,7 +31,7 @@ MatlabPNM is an open-source software developed for flow simulation at micro-scal
 User has access to MATLAB version 2016 or higher. The code does not require any scpecific toolbox to be installed.
 
 ## User documentation
-For a detailed explanation about installing and using the software, please look at out [user documentation](??).
+For a detailed explanation about installing and using the software, please look at out [user documentation](https://github.com/mhgolestan/MatlabPNM/blob/master/doc/User_Manual.md).
  
 ## Contributing
 You are welcome to contribute as developer to the code via pull requests. Please look at the contribution [guidelines](??).
