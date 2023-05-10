@@ -41,9 +41,9 @@ The MatlabPNM comes in two versions, the basic and the advanced (OOP) versions. 
 
 ## How to run?
 You can run the main script from the command-line using
-``````
+```
 matlab main.m
-`````
+```
 
 ### Input data
 Data must be structured following statoil protocol. A template is already provided in the package datasets directory.
