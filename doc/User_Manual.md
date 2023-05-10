@@ -1,5 +1,3 @@
-[![codecov](https://codecov.io/gh/leilahashemi/MatlabPNM/branch/master/graph/badge.svg?token=68C8WTS8OW)](https://codecov.io/gh/leilahashemi/MatlabPNM)
-
 What is MatlabPNM?
 ==================
 
