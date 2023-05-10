@@ -41,7 +41,9 @@ You are welcome to contribute as developer to the code via pull requests. Please
 
 #### Installation
 * Download the MatlabPNM repository via a terminal:
-`git clone https://github.com/mhgolestan/MatlabPNM.git`
+```
+git clone https://github.com/mhgolestan/MatlabPNM.git
+```
 * All source code can be found in the src directory.
 
 ## Licensing
