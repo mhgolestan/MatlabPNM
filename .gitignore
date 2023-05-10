@@ -1,11 +1,5 @@
 # Created by https://www.gitignore.io/api/matlab,windows
 
-<<<<<<< HEAD
-# ignored folders
-
-
-=======
->>>>>>> 10139318556eda681757c2a9ffe0d7216f98f4c2
 ### Matlab ###
 # Windows default autosave extension
 *.asv
@@ -60,6 +54,9 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# doc
+doc/_build
 
 
 # End of https://www.gitignore.io/api/matlab,windows
