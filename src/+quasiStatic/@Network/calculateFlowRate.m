@@ -1,5 +1,20 @@
-%% Flow rate calculation for each phase in the netwrok
 function calculateFlowRate(network)
+
+% Flow rate calculation for a single phase in the netwrok
+%
+% Parameters
+% ----------
+%   network: object form netwrok class
+%       Input value 1
+%
+% Returns
+% -------
+%   The input object is used to apply boundary conditions and call the function to calaulate pressure distribution accross the network and calculate outflow form the right side of the 3D netwrok and return the result as the feature "totalFlowRate_m3PerS" of the network object
+%
+% Example
+% -------
+% calculateFlowRate(network)
+
 % Fluid = wettingPhase
 calculatePressureDistribution_singlePhaseFlow(network);
 
