@@ -24,7 +24,7 @@ MatlabPNM is an open-source software developed for flow simulation at micro-scal
 </p> -->
 
 ## Installation
-* Download the reposity as a zip file. For the latest release, please check [releases page](https://github.com/mhgolestan/MatlabPNM/releases/) for available downloads.
+* Download the repository as a zip file. For the latest release, please check [releases page](https://github.com/mhgolestan/MatlabPNM/releases/) for available downloads.
 * Extract the zip archive on your computer.
 
 #### MATLAB installation
