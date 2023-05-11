@@ -9,9 +9,12 @@ Welcome to MatlabPNM's documentation!
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
+   
 
    feature-a.md	
    api.rst
+   User_Manual.md
+   ../README.md
 
 
 Indices and tables

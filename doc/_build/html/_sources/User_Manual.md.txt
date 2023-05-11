@@ -39,6 +39,12 @@ User has access to MATLAB version 2016 or higher. The code does not require any 
 ## Working with the software
 The MatlabPNM comes in two versions, the basic and the advanced (OOP) versions. The advanced version has the advantage of OOP which allows simulating big networks like common pore network data of Berea sandstone.  
 
+## How to run?
+You can run the main script from the command-line using
+```
+matlab main.m
+```
+
 ### Input data
 Data must be structured following statoil protocol. A template is already provided in the package datasets directory.
 <!-- TODO -->
