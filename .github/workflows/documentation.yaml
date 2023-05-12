@@ -1,9 +1,16 @@
 name: Docs
-on: [push, pull_request, workflow_dispatch]
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
 permissions:
-    contents: write
+  contents: write
+
 jobs:
   docs:
+    name: Build and Deploy Docs
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -24,4 +31,3 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: _build/
           force_orphan: true
-          
