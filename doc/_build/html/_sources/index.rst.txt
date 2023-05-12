@@ -10,11 +10,10 @@ Welcome to MatlabPNM's documentation!
    :maxdepth: 2
    :caption: Contents:
    
-
+   README.md
    feature-a.md	
    api.rst
    User_Manual.md
-   ../README.md
 
 
 Indices and tables
