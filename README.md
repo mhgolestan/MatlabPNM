@@ -1,7 +1,8 @@
-[![codecov](https://codecov.io/gh/leilahashemi/MatlabPNM/branch/master/graph/badge.svg?token=68C8WTS8OW)](https://codecov.io/gh/leilahashemi/MatlabPNM)
 
-What is MatlabPNM?
-==================
+# What is MatlabPNM?
+
+[![codecov](https://codecov.io/gh/leilahashemi/MatlabPNM/branch/master/graph/badge.svg?token=68C8WTS8OW)](https://codecov.io/gh/leilahashemi/MatlabPNM)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/leilahashemi/MatlabPNM/documentation.yaml)](https://leilahashemi.github.io/MatlabPNM/)
 
 MatlabPNM is an open-source software developed for flow simulation at micro-scale through porous media using a quasi-static pore-network modelling approach. 
 <p align="center">
