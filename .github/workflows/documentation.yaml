@@ -13,6 +13,9 @@ jobs:
           pip install sphinx sphinx_rtd_theme
       - name: Install myst_parser
         run: python3 -m pip install myst-parser
+      - uses: matlab-actions/setup-matlab@v0
+        with:
+          release: R2020b  
       - name: Sphinx build
         run: |
           sphinx-build doc _build
