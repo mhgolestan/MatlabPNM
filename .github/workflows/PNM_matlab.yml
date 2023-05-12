@@ -14,4 +14,7 @@ jobs:
           code-coverage-cobertura: coverage.xml
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
+      - name: Install myst_parser
+        run: pip install myst-parser
+
         
