@@ -1,9 +1,3 @@
-% Clearing the workspace
-clear 
-close all
-% clearing the current window
-clc
-
 % Sum two numbers with MATLAB
 %
 % Parameters
@@ -18,6 +12,12 @@ clc
 % Example
 % -------
 % Abs permeability
+
+% Clearing the workspace
+clear 
+close all
+% clearing the current window
+clc
 
 %% Flow module
 import quasiStatic.*
