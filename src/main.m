@@ -8,18 +8,16 @@ clc
 %
 % Parameters
 % ----------
-%   a: double
-%       Input value 1
-%   b: double
-%       Input value 2
+%   network: obj
+%       Input value 1 
 %
 % Returns
 % -------
-%   The input values summed
+%   Flow calculation
 %
 % Example
 % -------
-% sumNumbers_matlab(2,2)
+% Abs permeability
 
 %% Flow module
 import quasiStatic.*
