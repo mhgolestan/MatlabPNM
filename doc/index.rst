@@ -11,7 +11,6 @@ Welcome to MatlabPNM's documentation!
    :caption: Contents:
    
    README.md
-   feature-a.md	
    api.rst
    User_Manual.md
 
