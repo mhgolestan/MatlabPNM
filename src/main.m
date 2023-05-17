@@ -1,3 +1,18 @@
+% Sum two numbers with MATLAB
+%
+% Parameters
+% ----------
+%   network: obj
+%       Input value 1 
+%
+% Returns
+% -------
+%   Flow calculation
+%
+% Example
+% -------
+% Abs permeability
+
 % Clearing the workspace
 clear 
 close all
