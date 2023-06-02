@@ -11,17 +11,17 @@ MatlabPNM is an open-source software developed for flow simulation at micro-scal
   <img src="./results/PNM.gif" width="500"/>
 </p>
 <!-- 
-### Quasi-static package graph
+## Quasi-static package graph
 <p align="center">
   <img src="./results/quasi.png" width="700"/>
 </p>
 
-### Quasi-static drainage flowchart
+## Quasi-static drainage flowchart
 <p align="center">
   <img src="./results/drain.png" width="600"/>
 </p>
 
-### Quasi-static imbibition flowchart
+## Quasi-static imbibition flowchart
 <p align="center">
   <img src="./results/imb.png" width="800"/>
 </p> -->
@@ -30,19 +30,19 @@ MatlabPNM is an open-source software developed for flow simulation at micro-scal
 * Download the repository as a zip file. For the latest release, please check [releases page](https://github.com/mhgolestan/MatlabPNM/releases/) for available downloads.
 * Extract the zip archive on your computer.
 
-#### MATLAB installation
+### MATLAB installation
 User has access to MATLAB version 2016 or higher. The code does not require any scpecific toolbox to be installed.
 
 ## User documentation
 For a detailed explanation about installing and using the software, please look at out [user documentation](https://github.com/mhgolestan/MatlabPNM/blob/master/doc/User_Manual.md).
  
 ## Contributing
-You are welcome to contribute as developer to the code via pull requests. Please look at the contribution [guidelines](??).
+You are welcome to contribute as developer to the code via pull requests. Please look at the contribution [guidelines].
 
-#### Prerequisites
+### Prerequisites
 * MATLAB 2016 or higher.
 
-#### Installation
+### Installation
 * Download the MatlabPNM repository via a terminal:
 ```
 git clone https://github.com/mhgolestan/MatlabPNM.git

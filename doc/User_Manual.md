@@ -1,5 +1,4 @@
-What is MatlabPNM?
-==================
+# What is MatlabPNM?
 
 MatlabPNM is an open-source software developed for flow simulation at micro-scale through porous media using a quasi-static pore-network modelling approach. 
 <p align="center">
@@ -9,7 +8,7 @@ MatlabPNM is an open-source software developed for flow simulation at micro-scal
 
 ## Code structure
 
-#### Quasi-static package graph
+### Quasi-static package graph
 <p align="center">
   <img src="../results/quasi.png" width="700"/>
 </p>
@@ -17,12 +16,12 @@ MatlabPNM is an open-source software developed for flow simulation at micro-scal
 
 ## Algorithms of flow modelling
 
-#### Quasi-static drainage flowchart
+### Quasi-static drainage flowchart
 <p align="center">
   <img src="../results/drain.png" width="600"/>
 </p>
 
-#### Quasi-static imbibition flowchart
+### Quasi-static imbibition flowchart
 <p align="center">
   <img src="../results/imb.png" width="800"/>
 </p>
@@ -31,7 +30,7 @@ MatlabPNM is an open-source software developed for flow simulation at micro-scal
 * Download the reposity as a zip file. For the latest release, please check [releases page](https://github.com/mhgolestan/MatlabPNM/releases/) for available downloads.
 * Extract the zip archive on your computer.
 
-#### MATLAB installation
+### MATLAB installation
 User has access to MATLAB version 2016 or higher. The code does not require any scpecific toolbox to be installed.
 
 

@@ -1,4 +1,5 @@
 sourceCode 
 ------------
  
-.. autofunction:: src.main
+.. autofunction:: src.sourceCode
+.. autoscript:: src.main
