@@ -1,5 +1,5 @@
 % Clearing the workspace
-clear 
+clear
 close all
 % clearing the current window
 clc
@@ -8,7 +8,7 @@ clc
 import quasiStatic.*
 
 % Crearing an object of the network
-networkFileName = 'simple_9_homogen_highAR';  
+networkFileName = 'simple_9_homogen_highAR';
 network = Network(networkFileName);
 
 %% Calculating network propeties and running single-phase flow
@@ -20,10 +20,10 @@ network.calculateSinglePhasePressureDistribution = true;
 if network.calculateSinglePhasePressureDistribution
     network.inletPressure_Pa  = 1;
     network.outletPressure_Pa = 0;
-end 
+end
 
-network.IO.output_networkStochasticAndPlotInfo_singlePhaseFlow(network); 
-  
+network.IO.output_networkStochasticAndPlotInfo_singlePhaseFlow(network);
+
 %% Two-phase flow simulations
 
 network.max_Pc_Pa = 10000;
@@ -33,7 +33,7 @@ network.NoOfPc_interval = 10;
 network.randSeed = 0;
 
 % typeOfPoreBodyFillingAlgorithm = {Blunt1, Blunt2, Oren1, Oren2, Patzek, Valvatne (uses absolute permeability)}
-network.typeOfPoreBodyFillingAlgorithm = 'Valvatne'; 
+network.typeOfPoreBodyFillingAlgorithm = 'Valvatne';
 
 network.calculateRelativePermeability = true;
 network.recedingContactAngle = 0*pi/180;
@@ -42,19 +42,18 @@ network.flowVisualization = true;
 
 if network.calculateRelativePermeability
     network.inletPressure_Pa  = 1;
-    network.outletPressure_Pa = 0;    
+    network.outletPressure_Pa = 0;
 end
 
 % Calculationg capillary pressure & relative permeability during Primary Drainage
-fprintf('================================ Drainage Start =========================================\n'); 
-% network.primaryDrainage();  
-network.primaryDrainage_20191207();      
-% network.IO.output_networkStochasticAndPlotInfo_twoPhaseFlow(network); 
+fprintf('================================ Drainage Start =========================================\n');
+% network.primaryDrainage();
+network.primaryDrainage_20191207();
+% network.IO.output_networkStochasticAndPlotInfo_twoPhaseFlow(network);
 
 % Calculationg capillary pressure & relative permeability during Secondary Imbibition
-fprintf('================================ Imbibition Start =======================================\n'); 
-% network.secondaryImbibition(); 
-network.secondaryImbibition_20191207(); 
-% network.secondaryImbibition_20191207new(); 
-network.IO.output_networkStochasticAndPlotInfo_twoPhaseFlow(network); 
- 
+fprintf('================================ Imbibition Start =======================================\n');
+% network.secondaryImbibition();
+network.secondaryImbibition_20191207();
+% network.secondaryImbibition_20191207new();
+network.IO.output_networkStochasticAndPlotInfo_twoPhaseFlow(network);
