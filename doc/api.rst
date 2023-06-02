@@ -3,5 +3,6 @@ API reference
 
 .. toctree::
 
-    api/sourceCode
+    api/sourceCode 
+    api/main 
     

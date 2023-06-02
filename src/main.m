@@ -1,3 +1,18 @@
+% Sum two numbers with MATLAB
+%
+% Parameters
+% ----------
+%   network: obj
+%       Input value 1 
+%
+% Returns
+% -------
+%   Flow calculation
+%
+% Example
+% -------
+% Abs permeability
+
 % Clearing the workspace
 clear
 close all
@@ -52,8 +67,17 @@ network.primaryDrainage_20191207();
 % network.IO.output_networkStochasticAndPlotInfo_twoPhaseFlow(network);
 
 % Calculationg capillary pressure & relative permeability during Secondary Imbibition
+<<<<<<< HEAD
 fprintf('================================ Imbibition Start =======================================\n');
 % network.secondaryImbibition();
 network.secondaryImbibition_20191207();
 % network.secondaryImbibition_20191207new();
 network.IO.output_networkStochasticAndPlotInfo_twoPhaseFlow(network);
+=======
+fprintf('================================ Imbibition Start =======================================\n'); 
+% network.secondaryImbibition(); 
+network.secondaryImbibition_20191207(); 
+% network.secondaryImbibition_20191207new(); 
+network.IO.output_networkStochasticAndPlotInfo_twoPhaseFlow(network); 
+ 
+>>>>>>> refs/remotes/origin/master
