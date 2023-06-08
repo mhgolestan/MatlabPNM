@@ -1,4 +1,4 @@
-# User manual of MatlabPNM?
+# User manual for MatlabPNM
 
 MatlabPNM is an open-source software developed for flow simulation at micro-scale through porous media using a quasi-static pore-network modelling approach. It includes modules for generating various common network topologies, pore and throat geometry models, pore scale physics models, and fluid property estimation. It also contains a growing set of algorithms for running various simulations such drainage and Imbibition curves, permeability, and more. MatlabPNM is written in Matlab.
 <p align="center">
