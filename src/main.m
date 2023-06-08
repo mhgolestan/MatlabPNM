@@ -67,17 +67,8 @@ network.primaryDrainage_20191207();
 % network.IO.output_networkStochasticAndPlotInfo_twoPhaseFlow(network);
 
 % Calculationg capillary pressure & relative permeability during Secondary Imbibition
-<<<<<<< HEAD
 fprintf('================================ Imbibition Start =======================================\n');
 % network.secondaryImbibition();
 network.secondaryImbibition_20191207();
 % network.secondaryImbibition_20191207new();
-network.IO.output_networkStochasticAndPlotInfo_twoPhaseFlow(network);
-=======
-fprintf('================================ Imbibition Start =======================================\n'); 
-% network.secondaryImbibition(); 
-network.secondaryImbibition_20191207(); 
-% network.secondaryImbibition_20191207new(); 
 network.IO.output_networkStochasticAndPlotInfo_twoPhaseFlow(network); 
- 
->>>>>>> refs/remotes/origin/master
