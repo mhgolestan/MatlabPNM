@@ -71,4 +71,5 @@ fprintf('================================ Imbibition Start =====================
 % network.secondaryImbibition();
 network.secondaryImbibition_20191207();
 % network.secondaryImbibition_20191207new();
-network.IO.output_networkStochasticAndPlotInfo_twoPhaseFlow(network); 
+network.IO.output_networkStochasticAndPlotInfo_twoPhaseFlow(network);
+

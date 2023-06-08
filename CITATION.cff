@@ -3,10 +3,10 @@ message: If you use this software, please cite it using these metadata.
 title: Pore network modelling
 abstract: This is an open-source package for modelling flow transport in porous media using pore-network modelling approach!
 authors:
-  - family-names: Golestan
-    given-names: Mohammad Hossein  
   - family-names: Hashemi
     given-names: Leila
+  - family-names: Golestan
+    given-names: Mohammad Hossein  
     orcid: "https://orcid.org/0000-0001-7975-8604" 
 version: 2.0.0
 date-released: "2019-12-07"
