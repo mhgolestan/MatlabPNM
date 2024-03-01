@@ -15,7 +15,7 @@ if  element.shapeFactor <= sqrt(3) / 36
     element.halfAngle3 = pi / 2 - element.halfAngle1 - element.halfAngle2;
     element.halfAngle4 = nan;
     element.area = element.radius^2/4/element.shapeFactor;
-    element.conductanceSinglePhase = 3 * element.area^2 * element.shapeFactor / 5;
+    element.conductanceSinglePhase = 3 * element.area^2 * element.shapeFactor / 5 / element.wettingPhase_Viscosity_PaS; % Here it should be viscosity be divided, I think. 29.02.2024
     element.crossSectionShape = 1;
 elseif element.shapeFactor > sqrt(3) / 36 && element.shapeFactor <= 1 / 16
     element.geometry = 'Square';
@@ -24,7 +24,7 @@ elseif element.shapeFactor > sqrt(3) / 36 && element.shapeFactor <= 1 / 16
     element.halfAngle3 = pi / 4;
     element.halfAngle4 = pi / 4;
     element.area = 4*element.radius^2;
-    element.conductanceSinglePhase = 0.5623 * element.area^2 * element.shapeFactor ;
+    element.conductanceSinglePhase = 0.5623 * element.area^2 * element.shapeFactor / element.wettingPhase_Viscosity_PaS ;
     element.crossSectionShape = 2;
 elseif element.shapeFactor > 1 / 16
     element.geometry = 'Circle';
@@ -33,7 +33,7 @@ elseif element.shapeFactor > 1 / 16
     element.halfAngle3 = nan;
     element.halfAngle4 = nan;
     element.area = pi*element.radius^2;
-    element.conductanceSinglePhase = 0.5 * element.area^2 * element.shapeFactor ;
+    element.conductanceSinglePhase = 0.5 * element.area^2 * element.shapeFactor / element.wettingPhase_Viscosity_PaS ;
     element.crossSectionShape = 4;
 end
 if element.volume == 0
